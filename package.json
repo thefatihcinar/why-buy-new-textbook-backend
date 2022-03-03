@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/thefatihcinar/why-buy-new-textbook-backend/issues"
   },
-  "homepage": "https://github.com/thefatihcinar/why-buy-new-textbook-backend#readme"
+  "homepage": "https://github.com/thefatihcinar/why-buy-new-textbook-backend#readme",
+  "dependencies": {
+    "express": "^4.17.3"
+  }
 }
