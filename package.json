@@ -1,0 +1,19 @@
+{
+  "name": "why-buy-new-textbook-backend",
+  "version": "1.0.0",
+  "description": "Web APIs of Why Buy New Textbook Application",
+  "main": "server.js",
+  "scripts": {
+    "test": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thefatihcinar/why-buy-new-textbook-backend.git"
+  },
+  "author": "Fatih Çınar, Bengü Tercan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thefatihcinar/why-buy-new-textbook-backend/issues"
+  },
+  "homepage": "https://github.com/thefatihcinar/why-buy-new-textbook-backend#readme"
+}
