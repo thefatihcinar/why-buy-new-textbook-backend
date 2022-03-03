@@ -4,7 +4,7 @@
   "description": "Web APIs of Why Buy New Textbook Application",
   "main": "server.js",
   "scripts": {
-    "test": ""
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
