@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Web APIs of Why Buy New Textbook Application",
   "main": "server.js",
+  "type": "module",
   "scripts": {
     "start": "node server.js"
   },
