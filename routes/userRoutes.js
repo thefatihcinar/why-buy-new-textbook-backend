@@ -1,14 +1,16 @@
 import express from 'express'
+import { registerUser, loginUser, logoutUser, getUserProfile, updateUserProfile } from '../controllers/userController.js'
+
 
 const router = express.Router();
 
-function giris(request, response){
-
-    response.send("hello bengu")
-}
-
 // post '/users/login' => Hosgeldin Bengu
 
-router.route("/login").post(giris);
+router.route("/").post(registerUser);
+router.route("/login").post(loginUser);
+router.route("/logout").post(logoutUser);
+router.route("/profile").get(getUserProfile);
+router.route("/profile").put(updateUserProfile);
+
 
 export default router;
