@@ -1,6 +1,10 @@
 import express from 'express'
 import postRoutes from './routes/postRoutes.js'
 import userRoutes from './routes/userRoutes.js'
+import connectDatabase from './configurations/database.js'
+
+/* connect to the MongoDB first */
+connectDatabase();
 
 const app = express(); 
 
