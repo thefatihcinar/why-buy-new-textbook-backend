@@ -1,4 +1,5 @@
 import express from 'express'
+import colors from 'colors'
 import postRoutes from './routes/postRoutes.js'
 import userRoutes from './routes/userRoutes.js'
 import connectDatabase from './configurations/database.js'
