@@ -6,6 +6,7 @@ const app = express();
 
 // initially we are going to use the static middleware
 // PUT /posts/3/star
+// development phase
 
 app.use("/posts", postRoutes);
 app.use("/users", userRoutes);
