@@ -14,6 +14,17 @@ async function createPost(request, response){
     response.send(yarattigimUrun)
 }
 
+// PUT /posts/:id/images  => add an image to images of the post
+async function addImagetoPost(request, response){
+        // To-Do : Get the images file
+        // To-Do: Upload Image to AWS S3
+        // To-Do: Get Post Id from route
+        // To-Do: Insert image url into images array
+        
+    
+        response.send("Add image to post")
+}
+
 async function updatePost(request, response){
 
     // To-Do: Get the product id from route
