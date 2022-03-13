@@ -30,10 +30,11 @@ function updatePost(request, response){
     response.send("post was updated")
 }
 
-function deletePost(request, response){
+async function deletePost(request, response){
 
     // To-Do: Get the id from route
     // To-Do: Get the post from database with given id 
+    let deletedPost = await Post.findByIdAndDelete(request.params.id);
     // To-Do: Delete this post from database
 
     response.send("post was deleted")
