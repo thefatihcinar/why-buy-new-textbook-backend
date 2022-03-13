@@ -14,13 +14,13 @@ async function createPost(request, response){
     response.send(yarattigimUrun)
 }
 
-function updatePost(request, response){
+async function updatePost(request, response){
 
     // To-Do: Get the product id from route
     // To-Do: Get the NEW POST INFORMATION from body 
     // To-Do: Go get the posts with the given id & update it 
-
-    response.send("post was updated")
+    let updatedPost = await Post.findByIdAndUpdate(request.params.id, request.body, { new : true }) 
+    response.send(updatedPost)
 }
 
 async function deletePost(request, response){
