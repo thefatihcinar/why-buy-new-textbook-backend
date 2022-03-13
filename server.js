@@ -13,6 +13,11 @@ connectDatabase();
 
 const app = express(); 
 
+/* Set Up a Body Parser */
+app.use(express.json()); 
+/* JSON body must be in the form of an object */
+
+
 app.use("/posts", postRoutes);
 app.use("/users", userRoutes);
 
