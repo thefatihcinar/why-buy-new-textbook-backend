@@ -7,18 +7,11 @@ async function createPost(request, response){
     // To-Do: Get the post information from json 
     // To-Do: Create post in database
     // To-Do: Return the posts
-
-    let yarattigimUrun = await Post.create({
-        title: "Comptuer Networks Ders Notları",
-        price: 20 + counter,
-        description: "yılmaz hoca notları"
-    })
-    counter++;
-    console.log("yarattigimUrun");
-    console.log(yarattigimUrun);
+    
+    let yarattigimUrun = await Post.create(request.body)
 
 
-    response.send("post was added")
+    response.send(yarattigimUrun)
 }
 
 function updatePost(request, response){
