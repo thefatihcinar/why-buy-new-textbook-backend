@@ -4,6 +4,7 @@ const postSchema = mongoose.Schema(
   {
     "title": { type: String, required: true },
     "author": { type: String, required: true },
+    "edition": { type: Number, required: true },
     "price": { type: Number, required: true },
     "description": { type: String, required: true },
     "isApproved": { type: Boolean, required: true, default: false },
