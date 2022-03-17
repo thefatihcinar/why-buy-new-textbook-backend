@@ -59,11 +59,11 @@ const getPost = asyncHandler( async (request, response) => {
 
     console.log(request.params.id);
 
-    let bulunanSonuc = await Post.findById(request.params.id);
+    let foundPost = await Post.findById(request.params.id);
     // To-Do: Get the id from route
     // To-Do: Go get the posts from database with route
     
-    response.send(bulunanSonuc);
+    response.send(foundPost);
 })
 
 // @desc    favorite an existing post
