@@ -1,3 +1,4 @@
+import User from '../models/userModel,js';
 function registerUser(request, response){
 
     // To-Do: Get the user information from json 
