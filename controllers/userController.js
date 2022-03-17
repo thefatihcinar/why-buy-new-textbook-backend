@@ -1,10 +1,15 @@
 import User from '../models/userModel,js';
-function registerUser(request, response){
+
+// @desc    create new users
+// @route   POST /users
+// @access  private 
+async function registerUser(request, response){
 
     // To-Do: Get the user information from json 
     // To-Do: Create user in database
 
-    response.send("register user")
+    let registeredUser = await User.create(request.body);
+    response.send(registeredUser)
 }
 
 function loginUser(request, response){
