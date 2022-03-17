@@ -8,6 +8,7 @@ const postSchema = mongoose.Schema(
     "isApproved": { type: Boolean, required: true, default: false },
     "isDeleted": { type: Boolean, required: true, default: false },
     "mainImage": { type: String, default: "" },
+    "city": { type: String, required: true},
   },{ timestamps : true});
 
 /* create Post model from this schema */
