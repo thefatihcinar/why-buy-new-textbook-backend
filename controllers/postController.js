@@ -10,10 +10,8 @@ const createPost = asyncHandler( async (request, response) => {
     // To-Do: Create post in database
     // To-Do: Return the posts
     
-    let yarattigimUrun = await Post.create(request.body)
-
-
-    response.send(yarattigimUrun)
+    let createdPost = await Post.create(request.body)
+    response.send(createdPost)
 })
 
 // @desc    add new image to an existing post
