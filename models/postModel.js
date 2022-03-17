@@ -9,6 +9,7 @@ const postSchema = mongoose.Schema(
     "category": { type: String, required: true },
     "type": { type: String },
     "price": { type: Number, required: true },
+    "condition": { type: String, required: true },
     "description": { type: String, required: true },
     "isApproved": { type: Boolean, required: true, default: false },
     "isDeleted": { type: Boolean, required: true, default: false },
