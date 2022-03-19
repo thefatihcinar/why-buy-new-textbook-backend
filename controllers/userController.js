@@ -34,7 +34,7 @@ const registerUser = asyncHandler( async (request, response) => {
     }
 
     // Create user in the database
-    let user = await User.create({name,surname,email, password});
+    let user = await User.create({name, surname, email, password});
     
     // Check if user has been created successfully
     if(user) {
@@ -46,6 +46,7 @@ const registerUser = asyncHandler( async (request, response) => {
             email: user.email,
             token: generateToken(user._id)
         })
+    }
 
 //     // Create token
 //     const token = jwt.sign(
