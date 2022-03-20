@@ -7,12 +7,12 @@ import User from '../models/userModel.js'
 
 const authenticate =  asyncHandler( async (request, response, next) => {
     /* 
-       this middleware verifies the JWT tokens,
-       in order to implement authorization logic to user-specific pages 
-       use this middleware 
+      this middleware is responsible for verifying the token sent by the user
+      in order to implement any authorization or authentication logic
+      in user specific routes, use this middleware
     */
 
-    if( request.headers.authorization && request.headers.authorization('Bearer')){
+    if( request.headers.authorization && request.headers.authorization.startsWith('Bearer')){
 
       /* validate this token */ 
       let token;
@@ -39,5 +39,5 @@ const authenticate =  asyncHandler( async (request, response, next) => {
     }
 })
 
-
+export default authenticate;
 
