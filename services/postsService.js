@@ -30,6 +30,18 @@ class PostsService {
 
     return post;
   }
+
+  static async getPostsByUserID(userID){
+    /* this service gets all the posts that are published by the given user id */
+
+    // TO-DO: Implement this
+  }
+
+  static async getStarredPostsByUserID(userID){
+    /* this service gets all the posts that are starred by the given user id */
+
+    // TO-DO: Implement this
+  }
 }
 
 
