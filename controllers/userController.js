@@ -1,5 +1,8 @@
 import asyncHandler from 'express-async-handler'
-import User from '../models/userModel,js';
+import User from '../models/userModel.js';
+
+/* Helpers */
+import generateToken from '../utilities/generateToken.js';
 
 // @desc    create new users
 // @route   POST /users
@@ -10,18 +13,18 @@ const registerUser = asyncHandler( async (request, response) => {
     // To-Do: Create user in database
 
     // Get user input
-    let { name, surname, email, password } = req.body;
+    let { name, email, password } = request.body;
 
     // Null check for input
-    if (email === undefined || password === undefined ||name === undefined || surname === undefined) {
-      res.status(400).send("Email, password, name and surname must be provided");
+    if (email === undefined || password === undefined || name === undefined ) {
+      response.status(400).send("Email, password, name  must be provided");
     }
 
     // 1. Check if user already exists in the db
     let existingUser = await User.findOne({ email: email });
 
     if (existingUser) {
-      return res.status(409).send("User Already Exists. Please Login Again");
+      return response.status(409).send("User Already Exists. Please Login Again");
     }
 
     // 2. User does not exist, Create the user
@@ -31,18 +34,18 @@ const registerUser = asyncHandler( async (request, response) => {
 
     if(!emailRegexp.test(email)) {
         response.status(400).send("Email is not in the right format")
+        return;
     }
 
     // Create user in the database
-    let user = await User.create({name, surname, email, password});
+    let user = await User.create({name, email, password});
     
     // Check if user has been created successfully
     if(user) {
-        response.status(201).send("User is created succesfully")
+        response.status(201);
         response.json({
             _id: user._id,
             name: user.name,
-            surname: user.surname,
             email: user.email,
             token: generateToken(user._id)
         })
