@@ -60,6 +60,12 @@ class PostsService {
 
     // TO-DO: Implement this
   }
+
+  static async starPost(postID, userID){
+    /* this service stars the post with the given post id by the given user id */
+
+    // TO-DO: Implement this
+  }
 }
 
 
