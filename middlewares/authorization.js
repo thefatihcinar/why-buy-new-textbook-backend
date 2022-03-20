@@ -30,5 +30,27 @@ const postsAuthorization = asyncHandler(async (request, response, next) => {
 
 })
 
+const usersAuthorization = asyncHandler(async (request, response, next) => {
+  /* this middleware makes sure that users do not modify other users' data */
+
+  /* Get which user is desired to accessed by this user */
+  const requestedUserId = request.params.id;
+
+  /* Make sure this is the same user as authenticated */
+  /* in other words do not allow, this user to access other user's data */
+
+  /* If this user wants to change its own data, then next() */
+  if( requestedUserId === request.user._id){
+    next();
+  }
+  else{
+    /* this user wants to access other people's data */
+    response.status(403);
+    throw new Error("Forbidded");
+  }
+
+})
+
+
 export { postsAuthorization, usersAuthorization };
 
