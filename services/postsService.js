@@ -54,6 +54,12 @@ class PostsService {
 
     // TO-DO: Implement this
   }
+
+  static async addImageToPost(postID, imageURL){
+    /* this service adds an image to the post with the given post id */
+
+    // TO-DO: Implement this
+  }
 }
 
 
