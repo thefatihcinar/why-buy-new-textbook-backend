@@ -49,6 +49,11 @@ class PostsService {
     // TO-DO: Implement this
   }
 
+  static async updatePost(postID, post){
+    /* this service updates the post with the given post id */
+
+    // TO-DO: Implement this
+  }
 }
 
 
