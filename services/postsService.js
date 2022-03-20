@@ -19,7 +19,17 @@ class PostsService {
 
   }
 
-  
+  static async getPostByID(postID){
+    /* this services gets a post by its ID */
+
+    if(isEmpty(postID)){
+      throw new Error("PostID must be provided");
+    }
+
+    let post = await Post.findById(postID);
+
+    return post;
+  }
 }
 
 
