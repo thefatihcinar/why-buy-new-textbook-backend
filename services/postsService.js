@@ -42,6 +42,13 @@ class PostsService {
 
     // TO-DO: Implement this
   }
+
+  static async deletePost(postID){
+    /* this service deletes the post with the given post id */
+
+    // TO-DO: Implement this
+  }
+
 }
 
 
