@@ -86,4 +86,18 @@ const favoritePost = asyncHandler( async (request, response) => {
     response.send("Make post favorite")
 });
 
-export {createPost, updatePost, deletePost, getPost, favoritePost};
+// @desc    get the recommended posts (main page posts) for logged-in or not-logged-in users 
+// @route   GET /posts
+// @access  public/private 
+const getRecommendedPosts = asyncHandler( async (request, response) => {
+    /* this controller will get the recommended posts for the desiring user, in order to
+       be displayed in main page
+       even if there is not an authenticated user, still recommends posts based on a logic developed */
+
+    // To-do: Learn whether there is a user or not
+    // To-d: make recommendations based on that
+
+    response.send("main page posts");
+});
+
+export {createPost, updatePost, deletePost, getPost, favoritePost, getRecommendedPosts};
