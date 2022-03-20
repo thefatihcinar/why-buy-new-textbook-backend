@@ -45,5 +45,11 @@ class UsersService{
       
     
   }
-  
+
+  static async deactivateUser(userID){
+    /* this service deactivates an active user given with user id */
+
+    // TO-DO: Implement this
+  }
+
 }
