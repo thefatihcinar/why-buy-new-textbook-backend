@@ -1,12 +1,12 @@
 import mongoose from 'mongoose'
 
-const instituionSchema = mongoose.Schema(
+const institutionSchema = mongoose.Schema(
     {
         "name": { type: String, required: true },
     },{ timestamps : true });
 
 /* create Instituion model from this schema */
 
-const Instituion = mongoose.model('Instituion', instituionSchema);
+const Institution = mongoose.model('Institution', institutionSchema);
 
-export default Instituion;
+export default Institution;
