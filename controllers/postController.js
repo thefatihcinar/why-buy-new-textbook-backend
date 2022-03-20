@@ -1,5 +1,10 @@
 import asyncHandler from 'express-async-handler';
 import Post from "../models/postModel.js"
+import User from '../models/userModel.js';
+/* Services */
+import PostsService from '../services/postsService.js';
+/* Utilities */
+import { isEmpty } from '../utilities/emptiness.js';
 
 // @desc    create new posts
 // @route   POST /posts
@@ -9,8 +14,11 @@ const createPost = asyncHandler( async (request, response) => {
     // To-Do: Get the post information from json 
     // To-Do: Create post in database
     // To-Do: Return the posts
-    
+
     let createdPost = await Post.create(request.body)
+    
+    await User.updateOne({_id: request.user._id}, {$push: {posts: createdPost._id}});
+
     response.send(createdPost)
 })
 
@@ -57,13 +65,14 @@ const deletePost = asyncHandler( async (request, response) => {
 // @access  public 
 const getPost = asyncHandler( async (request, response) => {
 
-    console.log(request.params.id);
+    let post = await PostsService.getPostByID(request.params.id);
 
-    let foundPost = await Post.findById(request.params.id);
-    // To-Do: Get the id from route
-    // To-Do: Go get the posts from database with route
+    if(isEmpty(post)){
+        response.status(404);
+        throw new Error("post not found");
+    }
     
-    response.send(foundPost);
+    response.send(post);
 })
 
 // @desc    favorite an existing post
