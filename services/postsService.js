@@ -78,6 +78,12 @@ class PostsService {
 
     // TO-DO: Implement this
   }
+
+  static async newestPosts(){
+    /* this service brings the newest posts published in the system */
+    
+    // TO-DO: Implement this
+  }
   
 }
 
