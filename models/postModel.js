@@ -2,6 +2,7 @@ import mongoose from 'mongoose'
 
 const postSchema = mongoose.Schema(
   {
+    "seller": { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
     "title": { type: String, required: true },
     "author": { type: String, required: true },
     "edition": { type: String},
