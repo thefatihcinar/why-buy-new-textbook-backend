@@ -65,5 +65,11 @@ class UsersService{
     // TO-DO: Implement this
   }
 
-  
+  static async updateUserProfilePicture(userID, imageURL){
+    /* this service updates the profile picture of the user with the given user id 
+       and given with the new profile picture image url */
+
+    // TO-DO: Implement this
+
+  }
 }
