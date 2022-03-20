@@ -52,4 +52,18 @@ class UsersService{
     // TO-DO: Implement this
   }
 
+  
+  static async activateUser(userID){
+    /* this service reactivates an inactive user given with user id */
+
+    // TO-DO: Implement this
+  }
+
+  static async updateUser(userID, user){
+    /* this service updates the user with the given user id */
+
+    // TO-DO: Implement this
+  }
+
+  
 }
