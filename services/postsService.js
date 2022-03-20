@@ -19,6 +19,12 @@ class PostsService {
 
   }
 
+  static async searchPost(searchParameters){
+    /* this service searches for posts with given search/filtering parameters */
+
+    // TO-DO: Implement service
+  }
+
   static async getPostByID(postID){
     /* this services gets a post by its ID */
 
