@@ -5,6 +5,9 @@ import User from '../models/userModel.js'
 /* Utilities */
 import { isEmpty } from '../utilities/emptiness.js'
 
+/* Configurations */
+const pageSize = 16;
+
 class PostsService {
 
   static async createNewPost (post, user){
