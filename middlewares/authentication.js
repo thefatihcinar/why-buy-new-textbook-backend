@@ -39,5 +39,22 @@ const authenticate =  asyncHandler( async (request, response, next) => {
     }
 })
 
-export default authenticate;
+const softAuthentication = asyncHandler( async (request, response, next) => {
+  /* this middleware softly authenticates a user,
+     this means that there might not be a valid user, if there is not a valid user
+     let them go, 
+     but if there is user with a token, make sure who they sey they are */
+
+  if( request.headers.authorization && request.headers.authorization.startsWith('Bearer')){
+    /* If a JWT token is provided, make hard authentication */
+    return authenticate(request,response,next);
+  }
+  else{
+    /* if no token, or invalidly-formatted auth data is provided, do not authenticate them
+       but give them access */
+    next();
+  }
+})
+
+export { authenticate, softAuthentication };
 
