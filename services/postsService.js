@@ -66,6 +66,14 @@ class PostsService {
 
     // TO-DO: Implement this
   }
+
+  static async markPostAsSold(postID){
+    /* this service marks the post with the given post id as sold */
+
+    // TO-DO: Implement this
+  }
+
+  
 }
 
 
