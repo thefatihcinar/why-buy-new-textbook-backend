@@ -110,8 +110,32 @@ class PostsService {
   static async starPost(postID, userID){
     /* this service stars the post with the given post id by the given user id */
 
-    // TO-DO: Implement this
+    /* check this user id and post id is valid */
+    let user = await User.findById(userID);
+    let post = await Post.findById(postID);
+
+    if(!user || !post){
+      // if neither this user nor this post is existing, do not star this post and throw an error
+      throw new Error("user and post must be existing");
+      return;
+    }
+
+    /* check whether this post is already starred by this user */
+    let isAlreadyStarred = await user.starredPosts.includes(postID);
+    if(isAlreadyStarred){
+      // if this post is already starred by this user, unstar the post
+      let updatedUser = await User.updateOne({_id: userID}, { $pull: { starredPosts: postID } } ,  { new: true });
+      return updatedUser;
+    }
+    else {
+      /* this means that this user has not starred this post yet */
+
+      /* star this post */
+      let updatedUser = await User.updateOne({_id: userID}, { $push: { starredPosts: postID } } , { new: true });
+      return updatedUser;
+    }
   }
+
 
   static async markPostAsSold(postID){
     /* this service marks the post with the given post id as sold */
