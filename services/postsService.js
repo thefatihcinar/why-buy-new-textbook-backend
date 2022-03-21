@@ -62,10 +62,37 @@ class PostsService {
     // TO-DO: Implement this
   }
 
-  static async deletePost(postID){
+  static async deletePost(postID, deleteConfigurations){
     /* this service deletes the post with the given post id */
 
-    // TO-DO: Implement this
+    if(deleteConfigurations.softDelete === true){
+      /* this means make a soft delete of this object, i.e. mark as deleted but do not delete actually */
+      let deletedPost = await Post.updateOne({_id: postID}, { $set: { isDeleted: true } } , { new: true });
+
+      return deletedPost;
+    }
+    else if(deleteConfigurations.hardDelete === true){
+      /* this means make a hard delete of this object */
+      let deletedPost = await Post.deleteById(postID);
+
+      /* remove this post id form the published posts of the seller */
+      await User.updateOne({_id: deletedPost.seller}, { $pull: { publishedPosts: postID } } );
+
+      /* remove this post id from the starred posts of the seller */
+      await User.updateOne({_id: deletedPost.seller}, { $pull: { starredPosts: postID } } );
+
+      /* remove this post id from the recommended posts of the seller */
+      await User.updateOne({_id: deletedPost.seller}, { $pull: { recommendedPosts: postID } } );
+
+
+      return deletedPost;
+      /* break down its relation with user as well */
+
+    }
+    else{
+      throw new Error("delete configuration must be provided");
+    }
+    
   }
 
   static async updatePost(postID, post){
