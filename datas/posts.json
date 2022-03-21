@@ -6,13 +6,44 @@
     "isShippable": true,
     "isAvailableForFacetoFaceSelling": true,
     "mainImage": "https://i0.shbdn.com/photos/03/75/09/x5_1010037509vp0.jpg",
-    "description": "Üniversite İngilizce Calculus Matematik Kitabı. Mühendislik bölümlerine uygun. Yırtık veya aşınma yoktur. Temiz kullanılmıştır.
-    Thomas Calculus, 13th Edition in SI Units, 2016 basım.",
+    "description": "Üniversite İngilizce Calculus Matematik Kitabı. Mühendislik bölümlerine uygun. Yırtık veya aşınma yoktur. Temiz kullanılmıştır. Thomas Calculus, 13th Edition in SI Units, 2016 basım.",
     "type": "Ders Kitabı",
     "condition": "Temiz, Az Kullanılmış",
     "images": [
       "https://i0.shbdn.com/photos/03/75/09/x5_1010037509vp0.jpg",
       "https://i0.shbdn.com/photos/03/75/09/x5_10100375092bn.jpg"
+    ]
+  },
+  {
+    "title": "Kimya Üniversite İngilizce Kitabı Chemistry The Central Science",
+    "author": "Theodore L. Brown",
+    "price": 150,
+    "isShippable": false,
+    "isAvailableForFacetoFaceSelling": true,
+    "mainImage": "https://i0.shbdn.com/photos/03/42/27/x5_101003422729n.jpg",
+    "description": "Üniversite İngilizce Kimya Kitabı Mühendislik bölümlerine uygun. Yırtık veya aşınma yoktur. Temiz kullanılmıştır.Chemistry The Central Science, 13th Edition, Theodore L. Brown, H. Eugene Lemay Jr., Bruce E. Bursten, Catherine J. Murphy, Patrick M. Woodward, Matthew W. Stoltzfus, 2015 basım.",
+    "type": "Ders Kitabı",
+    "condition": "Temiz, Az Kullanılmış",
+    "images": [
+      "https://i0.shbdn.com/photos/03/42/27/x5_101003422729n.jpg",
+      "https://i0.shbdn.com/photos/03/42/27/x5_10100342274vg.jpg"
+    ]
+  },
+  {
+    "title": "Chemistry 13e Raymond Chang Jason Overby McGraw-Hill Education",
+    "author": "Theodore L. Brown",
+    "price": 150,
+    "isShippable": true,
+    "isAvailableForFacetoFaceSelling": true,
+    "mainImage": "https://i0.shbdn.com/photos/21/35/02/x5_9962135027xk.jpg",
+    "description": "McGraw-Hill Education Chemistry 13th Edition Raymond Chang Jason Overby International Student Edition for use outside of U.S. Orijinal kitaptır. Bulunması zordur. Tertemiz durumdadır, hiç kullanılmamıştır. Original book, all clean. No pencil drawings on the pages.",
+    "type": "Ders Kitabı",
+    "condition": "Temiz, Az Kullanılmış",
+    "images": [
+      "https://i0.shbdn.com/photos/21/35/02/x5_9962135027xk.jpg",
+      "https://i0.shbdn.com/photos/21/35/02/x5_996213502fco.jpg",
+      "https://i0.shbdn.com/photos/21/35/02/x5_996213502ozt.jpg",
+      "https://i0.shbdn.com/photos/21/35/02/x5_996213502xm7.jpg"
     ]
   }
 ]
