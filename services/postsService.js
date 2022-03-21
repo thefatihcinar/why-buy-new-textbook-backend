@@ -140,7 +140,19 @@ class PostsService {
   static async markPostAsSold(postID){
     /* this service marks the post with the given post id as sold */
 
-    // TO-DO: Implement this
+    /* first check whether this post is existing or not */
+    let post = await Post.findById(postID);
+
+    if(!post){
+      throw new Error("post not found to mark as sold");
+      return;
+    }
+
+    /* mark this post as sold */
+    let updatedPost = await Post.updateOne({_id: postID}, { $set: { isSold: true } } , { new: true });
+
+    return updatedPost;
+
   }
 
   static async newestPosts(){
