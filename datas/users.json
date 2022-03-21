@@ -2,18 +2,21 @@
   {
     "name": "Fatih Çınar",
     "email": "rea.fatihcinar@gmail.com",
+    "profilePicture": "https://yt3.ggpht.com/NJ-pO0i_n77AKc1koTewtffuDXOa4EyVjMtJh-vDzaKUGxpvlLtfNQ7DEl3o1LyS-IkW9HEApt8=s900-c-k-c0x00ffffff-no-rj",
     "password": "123456",
     "phoneNumber": "05555555555"
   },
   {
     "name": "Bengü Tercan",
     "email": "nazli_bengu_ank@hotmail.com",
+    "profilePicture":"https://media-exp1.licdn.com/dms/image/C4E03AQHFwhowJhGArw/profile-displayphoto-shrink_800_800/0/1605260485229?e=1653523200&v=beta&t=qiCaR8yJZlxPN3hWrN2z6RqG6iIX2qx4d_jp92W_6rQ",
     "password": "123456",
     "phoneNumber": "05555555555"
   },
   {
     "name": "Mehmet Duran",
     "email": "mehmet.duran@gmail.com",
+    "profilePicture": "https://avatars1.githubusercontent.com/u/12058981?s=460&v=4",
     "password": "123456",
     "phoneNumber": "05555555555"
   }
