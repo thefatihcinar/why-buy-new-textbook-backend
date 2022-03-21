@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Fatih Çınar",
+    "email": "rea.fatihcinar@gmail.com",
+    "password": "123456",
+    "phoneNumber": "05555555555"
+  },
+  {
+    "name": "Bengü Tercan",
+    "email": "nazli_bengu_ank@hotmail.com",
+    "password": "123456",
+    "phoneNumber": "05555555555"
+  },
+  {
+    "name": "Mehmet Duran",
+    "email": "mehmet.duran@gmail.com",
+    "password": "123456",
+    "phoneNumber": "05555555555"
+  }
+]
