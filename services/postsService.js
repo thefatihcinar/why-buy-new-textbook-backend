@@ -98,7 +98,19 @@ class PostsService {
   static async updatePost(postID, post){
     /* this service updates the post with the given post id */
 
-    // TO-DO: Implement this
+    /* make sure this post is existing */
+    let post = await Post.findById(postID);
+
+    if(!post){
+      throw new Error("post not found");
+      return;
+    }
+
+    /* update this post */
+    let updatedPost = await Post.updateOne({_id: postID}, { $set: post } , { new: true });
+
+    return updatedPost;
+
   }
 
   static async addImageToPost(postID, imageURL){
