@@ -105,7 +105,7 @@ class PostsService {
     
   }
 
-  static async updatePost(postID, post){
+  static async updatePost(postID, postInformation){
     /* this service updates the post with the given post id */
 
     /* make sure this post is existing */
@@ -117,7 +117,7 @@ class PostsService {
     }
 
     /* update this post */
-    let updatedPost = await Post.updateOne({_id: postID}, { $set: post } , { new: true });
+    let updatedPost = await Post.updateOne({_id: postID}, { $set: postInformation } , { new: true });
 
     return updatedPost;
 
