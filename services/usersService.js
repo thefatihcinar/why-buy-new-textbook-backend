@@ -4,6 +4,7 @@ import User from "../models/userModel.js";
 /* Utilities */
 import { isEmpty } from '../utilities/emptiness.js'
 import emailValidator from "../utilities/emailValidation.js";
+import generateToken from '../utilities/generateToken.js';
 
 class UsersService{
 
@@ -48,6 +49,38 @@ class UsersService{
 
   static async loginExistingUser(user){
     /* this service is responsible for logging the user into existing account*/
+    
+    let email = user.email, password = user.password;
+   
+    // Null Check for the email and password
+    if(email === undefined || password === undefined) {
+        throw new Error("email and password must be provided");
+        return;
+    }
+
+    // Go find the user in the db
+    const existingUser = await User.findOne({ email: email });
+
+    if(existingUser && await existingUser.matchPassword(password)){
+        // user is authenticated
+        response.json({
+            _id: existingUser._id,
+            name: existingUser.name,
+            email: existingUser.email,
+            isAdmin: existingUser.isAdmin,
+            token: generateToken(existingUser._id)
+        });
+    }
+    else if (existingUser){
+        // user exists but password is incorrent
+        throw new Error("password is incorrect");
+        return;
+    }
+    else {
+        // the user does not exist
+        throw new Error("user not found");
+        return;
+    }
     
   }
 
