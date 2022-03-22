@@ -15,10 +15,8 @@ const createPost = asyncHandler( async (request, response) => {
     // To-Do: Create post in database
     // To-Do: Return the posts
 
-    let createdPost = await Post.create(request.body)
+    let createdPost = PostsService.createNewPost(request.body, request.user);
     
-    await User.updateOne({_id: request.user._id}, {$push: {posts: createdPost._id}});
-
     response.send(createdPost)
 })
 
