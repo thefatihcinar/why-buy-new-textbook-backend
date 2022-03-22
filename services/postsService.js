@@ -67,9 +67,7 @@ class PostsService {
        throw new Error("There is no user with the given user id");
      }
  
-     let starredPostsOfThisUser = await Post.find({starredBy: userID});  
- 
-     return starredPostsOfThisUser;
+     return user.starredPosts;
   }
 
   static async deletePost(postID, deleteConfigurations){
@@ -94,6 +92,7 @@ class PostsService {
       /* remove this post id from the recommended posts of the seller */
       await User.updateOne({_id: deletedPost.seller}, { $pull: { recommendedPosts: postID } } );
 
+      // To Do: Delete this references from all other users
 
       return deletedPost;
       /* break down its relation with user as well */
