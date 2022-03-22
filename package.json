@@ -6,6 +6,7 @@
   "type": "module",
   "scripts": {
     "start": "node server.js",
+    "test": "NODE_OPTIONS=--experimental-vm-modules npx jest --detectOpenHandles --forceExit",
     "seed-database": "node seeding/seeder.js --seed",
     "destroy-database": "node seeding/seeder.js --destroy"
   },
