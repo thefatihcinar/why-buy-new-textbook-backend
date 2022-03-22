@@ -46,6 +46,11 @@ class UsersService{
     
   }
 
+  static async loginExistingUser(user){
+    /* this service is responsible for logging the user into existing account*/
+    
+  }
+
   static async deactivateUser(userID){
     /* this service deactivates an active user given with user id */
 
