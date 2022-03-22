@@ -67,7 +67,6 @@ class UsersService{
             _id: existingUser._id,
             name: existingUser.name,
             email: existingUser.email,
-            isAdmin: existingUser.isAdmin,
             token: generateToken(existingUser._id)
         });
     }
