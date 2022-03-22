@@ -109,15 +109,15 @@
     "price": 1.500,
     "isShippable": false,
     "isAvailableForFacetoFaceSelling": true,
-    "mainImage": "https://i0.shbdn.com/photos/00/10/85/thmb_1010001085ycl.jpg",
+    "mainImage": "https://i0.shbdn.com/photos/00/10/85/x5_1010001085ycl.jpg",
     "description": "KOLEKSİYONLUK ESER\n1932-34 YILLARI ARASI SEVDİĞİ KADINA YAZDIĞI 80 KADAR ŞİİR OLAN MİNİ DEFTER\nGUBARİ YAZI TEKNİĞİ İLE YAZILMIŞ AŞK ŞİİRLERİ",
     "type": "Defter",
     "condition": "Kullanılmış",
     "images": [
-      "https://i0.shbdn.com/photos/00/10/85/thmb_1010001085jr9.jpg",
-      "https://i0.shbdn.com/photos/00/10/85/thmb_10100010856dx.jpg",
-      "https://i0.shbdn.com/photos/00/10/85/thmb_1010001085393.jpg",
-      "https://i0.shbdn.com/photos/00/10/85/thmb_1010001085jfh.jpg"
+      "https://i0.shbdn.com/photos/00/10/85/x5_1010001085ycl.jpg",
+      "https://i0.shbdn.com/photos/00/10/85/x5_1010001085jr9.jpg",
+      "https://i0.shbdn.com/photos/00/10/85/x5_10100010856dx.jpg",
+      "https://i0.shbdn.com/photos/00/10/85/x5_1010001085393.jpg"
     ]
   },
   {
@@ -130,6 +130,8 @@
     "description": "EEM Lineer Cebir Ders Notları\n\nElektrik ve Elektronik Mühendisliği Bölümü Lineer Cebir ders notudur.\n\nLineer cebir ders notudur.\n\nLineer cebir (MAT192) ders notu içeriği:\n\nlineer denklem\nlineer denklem sistemi\nelementer satır işlemleri\nindirgenmiş satır eşolon formu\nvektörler\nmatematikte vektör\nlineer kombinasyon\nvektörlerde uzayı germe\nmatris vektör çarpımı ve ax=b ifadesi\nmatris-vektör çarpımı hesaplama ve birim matris\nmatris-vektör çarpımının özellikleri\nlineer bağımsızlık\nhomojen olmayan lineer denklem sistemlerinin parametrik dorumu ve doğru denklemi\nbazı geometrik lineer dönüşümler\nlineer dönüşümlerin bileşkesi ve matris çarpımı\nbirebir ve örten lineer dönüşümler\nDers notları lineer denklemden birebir ve örten lineer dönüşümlere kadardır. Notların devamı kısa bir süre sonra eklenecektir.",
     "type": "Defter",
     "condition": "Kullanılmış",
-    "images": []
+    "images": [
+      "https://www.derslerikurtaranadam.com/img/notesample.jpg"
+    ]
   } 
 ]
