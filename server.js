@@ -16,7 +16,7 @@ dotenv.config();
 /* connect to the MongoDB first */
 connectDatabase();
 
-const app = express(); 
+export const app = express(); 
 
 /* Set Up a Body Parser */
 app.use(express.json()); 
