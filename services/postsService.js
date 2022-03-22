@@ -59,7 +59,17 @@ class PostsService {
   static async getStarredPostsByUserID(userID){
     /* this service gets all the posts that are starred by the given user id */
 
-    // TO-DO: Implement this
+     /* first check whether there is such user with the given user id */
+     let user = await User.findById(userID);
+
+     if(!user){
+       // if there is not such a user, do not get starred posts of him
+       throw new Error("There is no user with the given user id");
+     }
+ 
+     let starredPostsOfThisUser = await Post.find({starredBy: userID});  
+ 
+     return starredPostsOfThisUser;
   }
 
   static async deletePost(postID, deleteConfigurations){
