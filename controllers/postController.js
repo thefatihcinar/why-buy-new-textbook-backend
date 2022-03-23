@@ -64,10 +64,11 @@ const deletePost = asyncHandler( async (request, response) => {
 
     // To-Do: Get the id from route
     // To-Do: Get the post from database with given id 
-    let deletedPost = await Post.findByIdAndDelete(request.params.id);
+    let deleteConfigurations = {softDelete: true, hardDelete: false};
+    let deletedPost = await PostsService.deletePost(request.params.id, deleteConfigurations)
     // To-Do: Delete this post from database
 
-    response.send("post was deleted")
+    response.send(deletePost)
 })
 
 // @desc    get a specific post with a given id
