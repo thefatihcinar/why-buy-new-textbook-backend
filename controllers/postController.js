@@ -139,14 +139,4 @@ const markPostAsSold = asyncHandler( async (request, response) => {
        response.send(soldPost);
 });
 
-// @desc    get the newest posts
-// @route   GET /posts/
-// @access  private/public 
-const newestPosts = asyncHandler( async (request, response) => {
-    /* this service brings the newest posts published in the system */
-
-       let newestPost = await PostsService.newestPosts()
-
-       response.send(newestPost);
-});
-export {createPost, searchPost, addImagetoPost, updatePost, deletePost, getPost, favoritePost, getRecommendedPosts, getPostsByUserID, markPostAsSold, newestPosts};
+export {createPost, searchPost, addImagetoPost, updatePost, deletePost, getPost, favoritePost, getRecommendedPosts, getPostsByUserID, markPostAsSold};
