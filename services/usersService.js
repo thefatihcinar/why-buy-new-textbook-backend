@@ -53,15 +53,21 @@ class UsersService{
     let newUser = await User.create({name, email, password});
      
     // Check if user has been created successfully
-    if(user) {
-        response.status(201);
-        response.json({
-            _id: newUser._id,
-            name: newUser.name,
-            email: newUser.email,
-            token: generateToken(newUser._id)
-        }) 
-      }
+    if(newUser){ 
+      let registeredUserJSON= {
+        _id: newUser._id,
+        name: newUser.name,
+        email: newUser.email,
+        token: generateToken(newUser._id)
+      }; 
+
+      return registeredUserJSON;
+    }
+
+    else if(!newUser){
+      throw new Error("User has not been created"); 
+      return;
+    }
   }
 
   static async loginUser(user){
@@ -78,14 +84,15 @@ class UsersService{
     // Go find the user in the db
     const inputUser = await User.findOne({ email: email });
 
-    if(inputUser && await inputUser.matchPassword(password)){
+    if(inputUser && await password === inputUser.password){
         // user is authenticated
-        response.json({
+        let loggedInUserJSON = {
             _id: inputUser._id,
             name: inputUser.name,
             email: inputUser.email,
             token: generateToken(inputUser._id)
-        });
+        }
+        return loggedInUserJSON;
     }
     else if (inputUser){
         // user exists but password is incorrent
