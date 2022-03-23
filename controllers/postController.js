@@ -20,6 +20,18 @@ const createPost = asyncHandler( async (request, response) => {
     response.send(createdPost)
 })
 
+// @desc    get specific posts with given keywords and filters 
+// @route   GET /posts/filterandsearch
+// @access  public 
+const searchPost = asyncHandler( async (request, response) => {
+    
+    /* this service searches for posts with given search/filtering parameters */
+
+    // TO-DO: Implement service
+
+    response.send("Searched posts")
+})
+
 // @desc    add new image to an existing post
 // @route   POST /posts/:id/images
 // @access  private 
