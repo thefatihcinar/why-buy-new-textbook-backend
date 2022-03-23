@@ -6,6 +6,7 @@ import connectDatabase from './configurations/database.js'
 /* Routes */
 import postRoutes from './routes/postRoutes.js'
 import userRoutes from './routes/userRoutes.js'
+import formRoutes from './routes/formRoutes.js'
 /* Middlewares */
 import notFound from './middlewares/notFound.js'
 import errorHandler from './middlewares/errorHandler.js'
@@ -25,6 +26,7 @@ app.use(express.json());
 /* Use Routes */
 app.use("/posts", postRoutes);
 app.use("/users", userRoutes);
+app.use("/forms", formRoutes);
 
 /* Not Found Middleware */
 app.use(notFound);
