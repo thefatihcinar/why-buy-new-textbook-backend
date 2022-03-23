@@ -140,9 +140,9 @@ const getStarredPostsByUserID = asyncHandler( async (request, response) => {
        response.send(starredPostsOfUser);
 });
 
-// @desc    get the starred posts for logged-in users 
+// @desc    mark post as sold
 // @route   PUT /posts/:id/sold
-// @access  private/public 
+// @access  private
 const markPostAsSold = asyncHandler( async (request, response) => {
     /* this service marks the post with the given post id as sold */
 
