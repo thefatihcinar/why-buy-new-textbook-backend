@@ -65,9 +65,10 @@ const deletePost = asyncHandler( async (request, response) => {
 
     // To-Do: Get the id from route
     // To-Do: Get the post from database with given id 
+    // To-Do: Delete this post from database
+    
     let deleteConfigurations = {softDelete: true, hardDelete: false};
     let deletedPost = await PostsService.deletePost(request.params.id, deleteConfigurations)
-    // To-Do: Delete this post from database
 
     response.send(deletePost)
 })
