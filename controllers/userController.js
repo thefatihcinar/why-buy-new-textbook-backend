@@ -77,6 +77,7 @@ const loginUser = asyncHandler( async (request, response) => {
     // To-Do: Get the user information from json 
     // To-Do: Get this user from database
     // To-Do: Check user email address and password
+    let loggedInUser = await UsersService.login(request.body)
 
     response.send("login")
 })
