@@ -1,5 +1,7 @@
 import asyncHandler from 'express-async-handler'
 import User from '../models/userModel.js';
+/* Services */
+import UsersService from '../services/usersService.js';
 
 /* Helpers */
 import generateToken from '../utilities/generateToken.js';
