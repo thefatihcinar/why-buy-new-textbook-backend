@@ -24,7 +24,7 @@ const createPost = asyncHandler( async (request, response) => {
 // @route   GET /posts/filterandsearch
 // @access  public 
 const searchPost = asyncHandler( async (request, response) => {
-    
+
     /* this service searches for posts with given search/filtering parameters */
 
     // TO-DO: Implement service
@@ -108,6 +108,17 @@ const getRecommendedPosts = asyncHandler( async (request, response) => {
     // To-d: make recommendations based on that
 
     response.send("main page posts");
+});
+
+// @desc    get the user's posts for logged-in users 
+// @route   GET /users/:id/posts
+// @access  private 
+const getPostsByUserID = asyncHandler( async (request, response) => {
+    /* this controller will get the posts of the authenticated and authorized user */
+
+    let post = await PostsService.getPostsByUserID(request.user.id);
+    
+    response.send(post);
 });
 
 export {createPost, updatePost, deletePost, getPost, favoritePost, getRecommendedPosts};
