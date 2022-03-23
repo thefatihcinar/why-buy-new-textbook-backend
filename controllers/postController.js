@@ -20,6 +20,18 @@ const createPost = asyncHandler( async (request, response) => {
     response.send(createdPost)
 })
 
+// @desc    get specific posts with given keywords and filters 
+// @route   GET /posts/filterandsearch
+// @access  public 
+const searchPost = asyncHandler( async (request, response) => {
+
+    /* this service searches for posts with given search/filtering parameters */
+
+    // TO-DO: Implement service
+
+    response.send("Searched posts")
+})
+
 // @desc    add new image to an existing post
 // @route   POST /posts/:id/images
 // @access  private 
@@ -29,8 +41,9 @@ const addImagetoPost = asyncHandler( async (request, response) => {
     // To-Do: Get Post Id from route
     // To-Do: Insert image url into images array
     
+    let addedImagetoPost = await PostsService.addImageToPost(request.params.id, imageURL)
 
-    response.send("Add image to post")
+    response.send(addedImagetoPost)
 })
 
 // @desc    update an existing post
@@ -41,7 +54,9 @@ const updatePost = asyncHandler( async (request, response) => {
     // To-Do: Get the product id from route
     // To-Do: Get the NEW POST INFORMATION from body 
     // To-Do: Go get the posts with the given id & update it 
-    let updatedPost = await Post.findByIdAndUpdate(request.params.id, request.body, { new : true }) 
+
+    let updatedPost = await PostsService.updatePost(request.params.id, request.body);
+    
     response.send(updatedPost)
 })
 
@@ -52,10 +67,12 @@ const deletePost = asyncHandler( async (request, response) => {
 
     // To-Do: Get the id from route
     // To-Do: Get the post from database with given id 
-    let deletedPost = await Post.findByIdAndDelete(request.params.id);
     // To-Do: Delete this post from database
 
-    response.send("post was deleted")
+    let deleteConfigurations = {softDelete: true, hardDelete: false};
+    let deletedPost = await PostsService.deletePost(request.params.id, deleteConfigurations)
+
+    response.send(deletedPost)
 })
 
 // @desc    get a specific post with a given id
@@ -81,7 +98,9 @@ const favoritePost = asyncHandler( async (request, response) => {
     // To-Do: Learn who connects from token/session
     // To-Do: Update post as favorite or unfavorite for the user
     
-    response.send("Make post favorite")
+    let starredPost = await PostsService.starPost(request.params.id, request.user.id);
+
+    response.send(starredPost)
 });
 
 // @desc    get the recommended posts (main page posts) for logged-in or not-logged-in users 
@@ -98,4 +117,26 @@ const getRecommendedPosts = asyncHandler( async (request, response) => {
     response.send("main page posts");
 });
 
-export {createPost, updatePost, deletePost, getPost, favoritePost, getRecommendedPosts};
+// @desc    get the user's posts for logged-in users 
+// @route   GET /users/:id/posts
+// @access  private 
+const getPostsByUserID = asyncHandler( async (request, response) => {
+    /* this controller will get the posts of the authenticated and authorized user */
+
+    let post = await PostsService.getPostsByUserID(request.user.id);
+    
+    response.send(post);
+});
+
+// @desc    mark post as sold
+// @route   PUT /posts/:id/sold
+// @access  private
+const markPostAsSold = asyncHandler( async (request, response) => {
+    /* this service marks the post with the given post id as sold */
+
+       let soldPost = await PostsService.markPostAsSold(request.params.id)
+
+       response.send(soldPost);
+});
+
+export {createPost, searchPost, addImagetoPost, updatePost, deletePost, getPost, favoritePost, getRecommendedPosts, getPostsByUserID, markPostAsSold};

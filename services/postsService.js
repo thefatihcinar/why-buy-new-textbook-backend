@@ -66,8 +66,10 @@ class PostsService {
        // if there is not such a user, do not get starred posts of him
        throw new Error("There is no user with the given user id");
      }
+
+     let starredPostsOfThisUser = user.starredPosts;
  
-     return user.starredPosts;
+     return starredPostsOfThisUser;
   }
 
   static async deletePost(postID, deleteConfigurations){

@@ -106,7 +106,7 @@
   {
     "title": "EL YAZMA MİNYATÜR ŞİİR DEFTERİ",
     "author": "Anonim",
-    "price": 1.500,
+    "price": 1500,
     "isShippable": false,
     "isAvailableForFacetoFaceSelling": true,
     "mainImage": "https://i0.shbdn.com/photos/00/10/85/x5_1010001085ycl.jpg",
@@ -133,5 +133,163 @@
     "images": [
       "https://www.derslerikurtaranadam.com/img/notesample.jpg"
     ]
-  } 
+  },
+  {
+    "title": "Orhan Pamuk - Beyaz Kale",
+    "author": "Orhan Pamuk",
+    "price": 20,
+    "isShippable": true,
+    "isAvailableForFacetoFaceSelling": true,
+    "mainImage": "https://i0.shbdn.com/photos/15/93/86/x5_1010159386j3w.jpg",
+    "description": "Orhan Pamuk - Beyaz Kale\nadlı kitabını D&R den Edebiyat dersi proje için almıştım. Daha sonra proje iptal oldu.\nKitabın kapağını dahi açmadım. Dolapta duracağına okur arkadaşlar için ucuza veriyorum.",
+    "type": "Okuma Kitabı",
+    "condition": "Sıfır",
+    "images": [
+      "https://i0.shbdn.com/photos/15/93/86/x5_1010159386j3w.jpg",
+      "https://i0.shbdn.com/photos/15/93/86/x5_1010159386sam.jpg"
+    ]
+  },
+  {
+    "title": "İpek Ongun KENDİ AYAKLARI ÜSTÜNDE Bir Genç Kızın Gizli Defteri",
+    "author": "İpek Ongun",
+    "price": 14.99,
+    "isShippable": true,
+    "isAvailableForFacetoFaceSelling": false,
+    "mainImage": "https://i0.shbdn.com/photos/52/83/20/x5_923528320lhx.jpg",
+    "description": "İpek Ongun\n\nBİR GENÇ KIZIN GİZLİ DEFTERİ-3\n\nKENDİ AYAKLARI  ÜSTÜNDE\n\n\nALTIN KİTAPLAR 1998, İkinci El, Karton Kapak, Roman Boy, 383 Sayfa, Kondisyon: 9/10\n\nÜCRETSİZ KARGO İLE GÖNDERİM\n\nYURTİÇİ KARGO anlaşması ile gönderim sağlıyoruz.\nLütfen diğer ilanlarımızı da inceleyiniz. Size uygun başka ürünlerimiz de olabilir.",
+    "type": "Okuma Kitabı",
+    "condition": "Kullanılmış",
+    "images": [
+      "https://i0.shbdn.com/photos/52/83/20/x5_923528320lhx.jpg",
+      "https://i0.shbdn.com/photos/52/83/20/x5_923528320nj9.jpg"
+    ]
+  },
+  {
+    "title": "Isı aktarımı Ders Notları",
+    "author": "Nurcan Kapucu",
+    "price": 45,
+    "isShippable": false,
+    "isAvailableForFacetoFaceSelling": true,
+    "mainImage": "https://www.dersnotumarket.com/wp-content/uploads/2021/12/CamScanner-12-09-2021-10.17_2-scaled.jpg",
+    "description": "2020-2021 GÜZ Dönemi Isı aktarımı ders notu soru çözümleriyle birlikte ",
+    "type": "Defter",
+    "condition": "Kullanılmış",
+    "images": [
+      "https://www.dersnotumarket.com/wp-content/uploads/2021/12/CamScanner-12-09-2021-10.17_2-scaled.jpg",
+      "https://www.dersnotumarket.com/wp-content/uploads/2021/12/CamScanner-12-09-2021-10.17_1.jpg"
+    ]
+  },
+  {
+    "title": "ELEKTRİK ELEKTRONİK MÜHENDİSLİĞİ 1. VE 2. SINIF SLAYT ÇIKTILARI",
+    "author": "Cengiz Yalçın",
+    "price": 50,
+    "isShippable": true,
+    "isAvailableForFacetoFaceSelling": true,
+    "mainImage": "https://i0.shbdn.com/photos/43/14/02/x5_1010431402ffl.jpg",
+    "description": "Slaytlar üzerinde aldığım notlar da mevcut. Mehmet Hocanın ders anlatışına göre aldığım notlar bulunuyor.",
+    "type": "Ders Slaytı Baskısı",
+    "condition": "Temiz, Az Kullanılmış",
+    "images": [
+      "https://i0.shbdn.com/photos/43/14/02/x5_1010431402ffl.jpg",
+      "https://i0.shbdn.com/photos/43/14/02/x5_1010431402k2z.jpg",
+      "https://i0.shbdn.com/photos/43/14/02/x5_1010431402gbi.jpg",
+      "https://i0.shbdn.com/photos/43/14/02/x5_1010431402p59.jpg",
+      "https://i0.shbdn.com/photos/43/14/02/x5_1010431402bsu.jpg",
+      "https://i0.shbdn.com/photos/43/14/02/x5_1010431402nt1.jpg",
+      "https://i0.shbdn.com/photos/43/14/02/x5_1010431402bm8.jpg",
+      "https://i0.shbdn.com/photos/43/14/02/x5_1010431402oih.jpg"
+    ]
+  },
+  {
+    "title": "Psikoloji-David Myers, Nathan Dewall 11. Baskıdan Çeviri",
+    "author": "David G. Myers, C. Nathan Dewall",
+    "price": 230,
+    "isShippable": false,
+    "isAvailableForFacetoFaceSelling": true,
+    "mainImage": "https://i0.shbdn.com/photos/19/17/40/x5_1001191740eck.jpg",
+    "description": "Çeviri Editörü Ayşegül Durak Batıgün Palme Yayınevi",
+    "type": "Ders Kitabı",
+    "condition": "Temiz, Az Kullanılmış",
+    "images": [
+      "https://i0.shbdn.com/photos/19/17/40/x5_1001191740eck.jpg",
+      "https://i0.shbdn.com/photos/19/17/40/x5_100119174089c.jpg",
+      "https://i0.shbdn.com/photos/19/17/40/x5_100119174083m.jpg",
+      "https://i0.shbdn.com/photos/19/17/40/x5_10011917401y3.jpg"
+    ]
+  },
+  {
+    "title": "Aöf Atatürk ilkeleri ve inkilap tarihi 1",
+    "author": "Uzman Kariyer",
+    "price": 160.75,
+    "isShippable": true,
+    "isAvailableForFacetoFaceSelling": true,
+    "mainImage": "https://i0.shbdn.com/photos/91/14/96/x5_1010911496m87.jpg",
+    "description": "Sadece 1 ünite çalişilmiş tertemiz diger sayfalar",
+    "type": "PDF Baskı",
+    "condition": "Temiz, Az Kullanılmış",
+    "images": []
+  },
+  {
+    "title": "egzersiz tedavisinde genel prensipler ve yöntemler",
+    "author": "A. Saadet Otman",
+    "price": 90,
+    "isShippable": true,
+    "isAvailableForFacetoFaceSelling": false,
+    "mainImage": "https://i0.shbdn.com/photos/00/20/00/x5_1010002000kua.jpg",
+    "description": "2019 basım. Pdf çıktısı almıştım fakat hiç kitap kapağı bile açmadım, çok yeni.",
+    "type": "PDF Baskı",
+    "condition": "Sıfır",
+    "images": [
+      "https://i0.shbdn.com/photos/00/20/00/x5_1010002000kua.jpg",
+      "https://i0.shbdn.com/photos/00/20/00/x5_10100020009sy.jpg"
+    ]
+  },
+  {
+    "title": "YDS çıkmış sorular Moda Dil",
+    "author": "Suat Gürcan, Rıdvan Gürbüz",
+    "price": 40,
+    "isShippable": true,
+    "isAvailableForFacetoFaceSelling": true,
+    "mainImage": "https://i0.shbdn.com/photos/35/35/27/x5_100435352728c.jpg",
+    "description": "2019 basım. Pdf çıktısı almıştım fakat hiç kitap kapağı bile açmadım, çok yeni.",
+    "type": "PDF Baskı",
+    "condition": "Kullanılmış",
+    "images": [
+      "https://i0.shbdn.com/photos/35/35/27/x5_100435352728c.jpg",
+      "https://i0.shbdn.com/photos/35/35/27/x5_100435352746h.jpg",
+      "https://i0.shbdn.com/photos/35/35/27/x5_1004353527lcu.jpg"
+    ]
+  },
+  {
+    "title": "Neufert Yapı Tasarımı, 39. Baskıdan Çeviri",
+    "author": "Beta",
+    "price": 358.95,
+    "isShippable": true,
+    "isAvailableForFacetoFaceSelling": true,
+    "mainImage": "https://i0.shbdn.com/photos/39/29/06/x5_1008392906sjc.jpg",
+    "description": "Görünmez spiralle ciltli olup iyi durumdadır. Çıktı alındığı günden beri kullanılmadı, fırsat olmadı.",
+    "type": "Ders Slaytı Baskısı",
+    "condition": "Sıfır",
+    "images": [
+      "https://i0.shbdn.com/photos/39/29/06/x5_1008392906sjc.jpg",
+      "https://i0.shbdn.com/photos/39/29/06/x5_1008392906l28.jpg",
+      "https://i0.shbdn.com/photos/39/29/06/x5_1008392906roi.jpg",
+      "https://i0.shbdn.com/photos/39/29/06/x5_1008392906war.jpg"
+    ]
+  },
+  {
+    "title": "Economics 6th edition pearson Hubbard",
+    "author": " Glenn Hubbard, Anthony O'Brien",
+    "price": 225,
+    "isShippable": true,
+    "isAvailableForFacetoFaceSelling": true,
+    "mainImage": "https://i0.shbdn.com/photos/22/67/97/x5_983226797gai.jpg",
+    "description": "For two-semester courses in Principles of Economics. The Relevance of Economics Through Real-world Business ExamplesOne of the challenges of teaching Principles of Economics is fostering interest in concepts that may not seem applicable to students' lives. Economics makes economics relevant by demonstrating how real businesses use economics to make decisions every day. And with an ever-changing U.S. and world economy, the Sixth Edition has been updated with the latest developments using new real-world business and policy examples. Regardless of their future career path-opening an art studio, trading on Wall Street, or bartending at the local pub-students will benefit from understanding the economic forces behind their work. MyEconLab (R) not included. Students, if MyEconLab is a recommended/mandatory component of the course, please ask your instructor for the correct ISBN and course ID. MyEconLab should only be purchased when required by an instructor. Instructors, contact your Pearson representative for more information.MyEconLab is an online homework, tutorial, and assessment product designed to personalize learning and improve results. With a wide range of interactive, engaging, and assignable activities, students are encouraged to actively learn and retain tough course concepts.",
+    "type": "Ders Kitabı",
+    "condition": "Sıfır",
+    "images": [
+      "https://i0.shbdn.com/photos/22/67/97/x5_983226797gai.jpg",
+      "https://i0.shbdn.com/photos/22/67/97/x5_983226797puv.jpg"
+    ]
+  }
 ]
