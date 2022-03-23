@@ -123,7 +123,7 @@ const getPostsByUserID = asyncHandler( async (request, response) => {
 
 // @desc    get the starred posts for logged-in users 
 // @route   GET /users/:id/favorites
-// @access  public/private 
+// @access  private 
 const getStarredPostsByUserID = asyncHandler( async (request, response) => {
     /* this controller gets all the posts that are starred by the given user id.
        the user must be authenticated and authorized to access his/her starred posts */
