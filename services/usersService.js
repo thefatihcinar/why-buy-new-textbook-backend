@@ -47,7 +47,7 @@ class UsersService{
     
   }
 
-  static async loginExistingUser(user){
+  static async loginUser(user){
     /* this service is responsible for logging the user into existing account*/
     
     let email = user.email, password = user.password;
@@ -59,18 +59,18 @@ class UsersService{
     }
 
     // Go find the user in the db
-    const existingUser = await User.findOne({ email: email });
+    const inputUser = await User.findOne({ email: email });
 
-    if(existingUser && await existingUser.matchPassword(password)){
+    if(inputUser && await inputUser.matchPassword(password)){
         // user is authenticated
         response.json({
-            _id: existingUser._id,
-            name: existingUser.name,
-            email: existingUser.email,
-            token: generateToken(existingUser._id)
+            _id: inputUser._id,
+            name: inputUser.name,
+            email: inputUser.email,
+            token: generateToken(inputUser._id)
         });
     }
-    else if (existingUser){
+    else if (inputUser){
         // user exists but password is incorrent
         throw new Error("password is incorrect");
         return;
@@ -79,8 +79,7 @@ class UsersService{
         // the user does not exist
         throw new Error("user not found");
         return;
-    }
-    
+    } 
   }
 
   static async deactivateUser(userID){
@@ -110,3 +109,5 @@ class UsersService{
 
   }
 }
+
+export default UsersService;
