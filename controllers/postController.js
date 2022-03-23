@@ -53,7 +53,8 @@ const updatePost = asyncHandler( async (request, response) => {
     // To-Do: Get the product id from route
     // To-Do: Get the NEW POST INFORMATION from body 
     // To-Do: Go get the posts with the given id & update it 
-    let updatedPost = await Post.findByIdAndUpdate(request.params.id, request.body, { new : true }) 
+    let updatedPost = await PostsService.updatePost(request.params.id, request.body);
+    
     response.send(updatedPost)
 })
 
