@@ -98,7 +98,9 @@ const favoritePost = asyncHandler( async (request, response) => {
     // To-Do: Learn who connects from token/session
     // To-Do: Update post as favorite or unfavorite for the user
     
-    response.send("Make post favorite")
+    let starredPost = await PostsService.starPost(request.params.id, request.user.id);
+
+    response.send(starredPost)
 });
 
 // @desc    get the recommended posts (main page posts) for logged-in or not-logged-in users 
