@@ -15,6 +15,9 @@ class UsersService{
 
     /* this code block makes sure that none of the fields are empty */
 
+    // Get user input
+    let name = user.name, email = user.email, password = user.password;
+
     for(let key in user){
 
       let value =  user[key]; // get the value for this key of this user
@@ -25,26 +28,40 @@ class UsersService{
       }
     }
 
-    /* EMail Validation */
-    if (!emailValidator(user.email)){
-      // if the email is not verified
-      throw new Error("Email is not in the right format");
+    // Null check for input
+    if (email === undefined || password === undefined || name === undefined ) {
+      throw new Error("Email, password, name  must be provided");
+      return;
     }
-    
-    /* Check whether this user already exists or not */
 
-    let existingUser = await User.findOne( { email: email } );
-
+    /* EMail Validation */
+    if (!emailValidator(email)){
+      // Check whether email is valid or not, if the email is not verified
+      throw new Error("Email is not in the right format");
+      return;
+    }
+ 
+    // 1. Check if user already exists or not
+    let existingUser = await User.findOne({ email: email });
+ 
     if (existingUser) {
       throw new Error("User Already Exists");
       return;
     }
-
-    /* Create the user */
-
-
-      
-    
+ 
+    // 2. User does not exist, Create the user
+    let user = await User.create({name, email, password});
+     
+    // Check if user has been created successfully
+    if(user) {
+        response.status(201);
+        response.json({
+            _id: user._id,
+            name: user.name,
+            email: user.email,
+            token: generateToken(user._id)
+        }) 
+      }
   }
 
   static async loginUser(user){
