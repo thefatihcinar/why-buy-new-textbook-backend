@@ -121,4 +121,15 @@ const getPostsByUserID = asyncHandler( async (request, response) => {
     response.send(post);
 });
 
+// @desc    get the starred posts for logged-in users 
+// @route   GET /users/:id/favorites
+// @access  public/private 
+const getStarredPostsByUserID = asyncHandler( async (request, response) => {
+    /* this controller gets all the posts that are starred by the given user id.
+       the user must be authenticated and authorized to access his/her starred posts */
+
+       let starredPostsOfUser = await PostsService.getStarredPostsByUserID(request.user.id)
+
+       response.send(starredPostsOfUser);
+});
 export {createPost, updatePost, deletePost, getPost, favoritePost, getRecommendedPosts};
