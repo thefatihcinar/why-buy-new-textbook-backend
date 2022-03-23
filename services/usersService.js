@@ -50,16 +50,16 @@ class UsersService{
     }
  
     // 2. User does not exist, Create the user
-    let user = await User.create({name, email, password});
+    let newUser = await User.create({name, email, password});
      
     // Check if user has been created successfully
     if(user) {
         response.status(201);
         response.json({
-            _id: user._id,
-            name: user.name,
-            email: user.email,
-            token: generateToken(user._id)
+            _id: newUser._id,
+            name: newUser.name,
+            email: newUser.email,
+            token: generateToken(newUser._id)
         }) 
       }
   }
