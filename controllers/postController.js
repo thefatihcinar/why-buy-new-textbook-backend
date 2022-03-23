@@ -150,4 +150,4 @@ const markPostAsSold = asyncHandler( async (request, response) => {
 
        response.send(soldPost);
 });
-export {createPost, updatePost, deletePost, getPost, favoritePost, getRecommendedPosts};
+export {createPost, searchPost, addImagetoPost, updatePost, deletePost, getPost, favoritePost, getRecommendedPosts, getPostsByUserID, getStarredPostsByUserID, markPostAsSold};
