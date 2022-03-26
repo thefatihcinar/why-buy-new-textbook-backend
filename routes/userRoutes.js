@@ -5,6 +5,8 @@ import { registerUser, loginUser, logoutUser, getUserProfile, updateUserProfile 
 import { authenticate, softAuthentication } from '../middlewares/authentication.js'
 import { usersAuthorization } from '../middlewares/authorization.js'
 import active from '../middlewares/active.js'
+/* Validators */
+import { registerUserValidator, loginUserValidator, updateUserProfileValidator } from '../validators/userValidators.js'
 
 const router = express.Router();
 

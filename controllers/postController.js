@@ -1,4 +1,5 @@
 import asyncHandler from 'express-async-handler';
+import { validationResult } from 'express-validator';
 import Post from "../models/postModel.js"
 import User from '../models/userModel.js';
 /* Services */
@@ -10,6 +11,12 @@ import { isEmpty } from '../utilities/emptiness.js';
 // @route   POST /posts
 // @access  private 
 const createPost = asyncHandler( async (request, response) => {
+
+    // Finds the validation errors in this request and wraps them in an object with handy functions
+    const errors = validationResult(request);
+    if (!errors.isEmpty()) {
+      return response.status(400).json({ errors: errors.array() });
+    }
 
     // To-Do: Get the post information from json 
     // To-Do: Create post in database
