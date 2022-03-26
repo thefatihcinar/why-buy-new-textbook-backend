@@ -106,16 +106,6 @@ const getRecommendedPosts = asyncHandler( async (request, response) => {
     response.send("main page posts");
 });
 
-// @desc    get the user's posts for logged-in users 
-// @route   GET /users/:id/posts
-// @access  private 
-const getPostsByUserID = asyncHandler( async (request, response) => {
-    /* this controller will get the posts of the authenticated and authorized user */
-
-    let post = await PostsService.getPostsByUserID(request.user.id);
-    
-    response.send(post);
-});
 
 // @desc    mark post as sold
 // @route   PUT /posts/:id/sold
@@ -128,4 +118,4 @@ const markPostAsSold = asyncHandler( async (request, response) => {
        response.send(soldPost);
 });
 
-export {createPost, searchPost, addImagetoPost, updatePost, deletePost, getPost, favoritePost, getRecommendedPosts, getPostsByUserID, markPostAsSold};
+export {createPost, searchPost, addImagetoPost, updatePost, deletePost, getPost, favoritePost, getRecommendedPosts, markPostAsSold};
