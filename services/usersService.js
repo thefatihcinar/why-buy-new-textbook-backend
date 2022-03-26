@@ -124,6 +124,21 @@ class UsersService {
   static async activateUser(userID){
     /* this service reactivates an inactive user given with user id */
 
+    /* Make sure user with this user id exists */
+    if( !await UsersServiceHelper.doesUserExist(userID) ){
+      throw new Error("user not found");
+    }
+    
+    let activated = await User.findByIdAndUpdate(userID, { isActive: true }, { new: true });
+
+    /* resurrect this users soflt-deleted posts */
+    let usersPosts = await PostsService.getPostsByUserID(userID);
+    
+    for(post of usersPosts){
+      await PostsService.ressurrectPost(post._id);
+    }
+
+    return activated;
     
   }
 
