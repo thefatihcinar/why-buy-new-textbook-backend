@@ -34,13 +34,6 @@ const loginUser = asyncHandler( async (request, response) => {
     
 })
 
-const logoutUser = asyncHandler( async (request, response) => {
-
-    // To-Do: Remove session
-
-    response.send("logged out")
-})
-
 const getUserProfile = asyncHandler( async (request, response) => {
 
     try {
@@ -70,4 +63,4 @@ const updateUserProfile = asyncHandler( async (request, response) => {
     }
 })
 
-export {registerUser, loginUser, logoutUser, getUserProfile, updateUserProfile};
+export {registerUser, loginUser, getUserProfile, updateUserProfile};
