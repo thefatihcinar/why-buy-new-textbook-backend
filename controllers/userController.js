@@ -1,5 +1,5 @@
 import asyncHandler from 'express-async-handler'
-import User from '../models/userModel.js';
+import { StatusCodes } from 'http-status-codes';
 /* Services */
 import UsersService from '../services/usersService.js';
 
