@@ -1,9 +1,13 @@
+import { StatusCodes } from 'http-status-codes';
 /* Models */
 import User from "../models/userModel.js";
 /* Utilities */
 import { isEmpty } from '../utilities/emptiness.js'
 import Token from "../utilities/token.js";
 import PostsService from "./postsService.js";
+/* Messages */
+import msg from '../messages/userMessages.js'
+
 
 class UsersServiceHelper {
 
@@ -20,8 +24,6 @@ class UsersServiceHelper {
   static async doesUserExistByEmail(email) {
     /* this method computes whether this user exists in the database
         or not based on the email provided */
-    
-    if(isEmpty(email)) throw new Error("email is empty");
 
     let user = await User.findOne({email: email});
 
@@ -30,6 +32,31 @@ class UsersServiceHelper {
     }
     else return true;
   }
+
+  static async assertUserExists(userId) {
+    /* this method makes sure that the user exists in the database
+       and if not it throws an error */
+
+    if( !await UsersServiceHelper.doesUserExist(userID) ){
+      const error = new Error();
+      error.message = msg.USER_NOT_FOUND;
+      error.code = StatusCodes.NOT_FOUND;
+      throw error;
+    }
+  }
+
+  static async assertUserNotExists(email) {
+    /* this method makes sure that the user DOES NOT exist in the database
+       and if exists, it throws an error */
+
+    if(await UsersServiceHelper.doesUserExistByEmail(email)){
+      /* it means that there is a registered user with this email */
+      const error = new Error();
+        error.message = msg.EMAIL_IS_ALREADY_IN_USE;
+        error.code = StatusCodes.CONFLICT;
+      throw error;
+    }
+  }
 }
 
 class UsersService {
@@ -37,10 +64,7 @@ class UsersService {
   static async registerNewUser(user){
 
     /* 1. Make sure there is not a registered user with this email */
-    if(await UsersServiceHelper.doesUserExistByEmail(user.email)){
-      /* it means that there is a registered user with this email */
-      throw new Error("user already exists");
-    }
+    await UsersServiceHelper.assertUserExists(user.email);
 
     /* Validations are removed because they are now done by express
       validator middlewares */
@@ -61,8 +85,8 @@ class UsersService {
 
       return registeredUser;
     }
-    else if(!newUser){
-      throw new Error("user could not be created");
+    else if( !newUser ){
+      throw new Error(msg.USER_NOT_CREATED);
     }
   }
 
@@ -87,14 +111,18 @@ class UsersService {
         return loggedInUser;
     }
     /* Case 2: User exits but password is incorrect */
-    else if (inputUser){
-        throw new Error("password is incorrect");
-        return;
+    else if (user){
+      const error = new Error();
+        error.message = msg.PASSWORD_INCORRECT;
+        error.code = StatusCodes.BAD_REQUEST;
+      throw error;
     }
     /* Case 3: User with this email does not exist */
     else {
-        throw new Error("user not found");
-        return;
+        const error = new Error();
+          error.message = msg.USER_NOT_FOUND;
+          error.code = StatusCodes.NOT_FOUND;
+        throw error;
     } 
   }
 
@@ -102,9 +130,7 @@ class UsersService {
     /* this service deactivates an active user given with user id */
 
     /* Make sure user with this user id exists */
-    if( !await UsersServiceHelper.doesUserExist(userID) ){
-      throw new Error("user not found");
-    }
+    await UsersServiceHelper.assertUserExists(userID);
 
     let deactivated = await User.findByIdAndUpdate(userID, { isActive: false }, { new: true });
     
@@ -124,9 +150,7 @@ class UsersService {
     /* this service reactivates an inactive user given with user id */
 
     /* Make sure user with this user id exists */
-    if( !await UsersServiceHelper.doesUserExist(userID) ){
-      throw new Error("user not found");
-    }
+    await UsersServiceHelper.assertUserExists(userID);
     
     let activated = await User.findByIdAndUpdate(userID, { isActive: true }, { new: true });
 
@@ -145,9 +169,7 @@ class UsersService {
     /* this service updates the user with the given user id */
 
     /* Make sure user with this user id exists */
-    if( !await UsersServiceHelper.doesUserExist(userID) ){
-      throw new Error("user not found");
-    }
+    await UsersServiceHelper.assertUserExists(userID);
 
     /* Update the user */
     let updatedUser = await User.findByIdAndUpdate(userID, user, { new: true });
@@ -161,9 +183,7 @@ class UsersService {
        and given with the new profile picture image url */
 
     /* Make sure user with this user id exists */
-    if( !await UsersServiceHelper.doesUserExist(userID) ){
-      throw new Error("user not found");
-    }
+    await UsersServiceHelper.assertUserExists(userID);
 
     /* Update the user's profile picture */
     let user = await User.findByIdAndUpdate(userID, { profilePictureURL: newProfilePictureURL }, { new: true });

@@ -7,4 +7,6 @@ export default {
   USER_NOT_AUTHORIZED: 'Yetkisiz Kullanıcı',
   USER_NOT_FOUND_FOR_THIS_ID: 'Kullanıcı bulunamadı.',
   USER_NOT_FOUND_FOR_THIS_EMAIL: 'Kullanıcı bulunamadı.',
+  USER_NOT_CREATED: 'Kullanıcı oluşturulamadı.',
+  PASSWORD_INCORRECT: 'Şifre yanlış.'
 };
