@@ -29,7 +29,7 @@ const loginUserValidator = [
 
 const updateUserProfileValidator = [
   /* validate for field: name */
-  body('name').notEmpty(),
+  body('name').notEmpty().withMessage(msg.NAME_IS_REQUIRED),
   body('name').exists(),
   /* validate for field: email */
   /* email must be empty */
