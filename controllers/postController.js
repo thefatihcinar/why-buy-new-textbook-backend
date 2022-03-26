@@ -12,16 +12,6 @@ import { isEmpty } from '../utilities/emptiness.js';
 // @access  private 
 const createPost = asyncHandler( async (request, response) => {
 
-    // Finds the validation errors in this request and wraps them in an object with handy functions
-    const errors = validationResult(request);
-    if (!errors.isEmpty()) {
-      return response.status(400).json({ errors: errors.array() });
-    }
-
-    // To-Do: Get the post information from json 
-    // To-Do: Create post in database
-    // To-Do: Return the posts
-
     let createdPost = PostsService.createNewPost(request.body, request.user);
     
     response.send(createdPost)
