@@ -1,11 +1,12 @@
-
 /* Models */
 import User from "../models/userModel.js";
 /* Utilities */
 import { isEmpty } from '../utilities/emptiness.js'
 import Token from "../utilities/token.js";
 
+
 class UsersServiceHelper {
+
   static async doesUserExist(userId) {
     /* this method make sures that the requested user is existing
        in the database, otherwise it returns false */
@@ -31,7 +32,7 @@ class UsersServiceHelper {
   }
 }
 
-class UsersService{
+class UsersService {
 
   static async registerNewUser(user){
 
@@ -65,37 +66,33 @@ class UsersService{
     }
   }
 
-  static async loginUser(user){
-    /* this service is responsible for logging the user into existing account*/
-    
-    let email = user.email, password = user.password;
-   
-    // Null Check for the email and password
-    if(email === undefined || password === undefined) {
-        throw new Error("email and password must be provided");
-        return;
-    }
+  static async loginUser( { email , password }){
+    /* this service is responsible for logging the user
+       in other words, creates a new Bearer token */
 
-    // Go find the user in the db
-    const inputUser = await User.findOne({ email: email });
+    /* 1. First check the user in the database */
+    const user = await User.findOne( { email: email } );
 
-    if(inputUser && await password === inputUser.password){
-        // user is authenticated
-        let loggedInUserJSON = {
-            _id: inputUser._id,
-            name: inputUser.name,
-            email: inputUser.email,
-            token: Token.generateBearerToken(inputUser._id)
+    /* Case 1: User exists and password is correct */
+      /* Log In is Successful */
+    if( user && await password === user.password){
+        /* the user is successfully authenticated */
+        let loggedInUser = {
+            _id: user._id,
+            name: user.name,
+            email: user.email,
+            phoneNumber: user.phoneNumber,
+            token: Token.generateBearerToken(user._id)
         }
-        return loggedInUserJSON;
+        return loggedInUser;
     }
+    /* Case 2: User exits but password is incorrect */
     else if (inputUser){
-        // user exists but password is incorrent
         throw new Error("password is incorrect");
         return;
     }
+    /* Case 3: User with this email does not exist */
     else {
-        // the user does not exist
         throw new Error("user not found");
         return;
     } 
