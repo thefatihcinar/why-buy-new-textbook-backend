@@ -5,14 +5,15 @@ import { registerUser, loginUser, getUserProfile, updateUserProfile } from '../c
 import { authenticate, softAuthentication } from '../middlewares/authentication.js'
 import { usersAuthorization } from '../middlewares/authorization.js'
 import active from '../middlewares/active.js'
+import validateInput from '../middlewares/validateInput.js'
 /* Validators */
 import { createNewUserValidator, loginUserValidator, updateUserProfileValidator } from '../validators/userValidators.js'
 
 const router = express.Router();
 
-router.route("/").post(createNewUserValidator, registerUser);
-router.route("/login").post(loginUserValidator, loginUser);
+router.route("/").post(createNewUserValidator, validateInput, registerUser);
+router.route("/login").post(loginUserValidator, validateInput, loginUser);
 router.route("/profile").get(authenticate, active, usersAuthorization, getUserProfile);
-router.route("/profile").put(authenticate, active, usersAuthorization, updateUserProfileValidator, updateUserProfile);
+router.route("/profile").put(authenticate, active, usersAuthorization, updateUserProfileValidator, validateInput, updateUserProfile);
 
 export default router;
