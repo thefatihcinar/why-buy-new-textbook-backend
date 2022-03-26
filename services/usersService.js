@@ -64,7 +64,7 @@ class UsersService {
   static async registerNewUser(user){
 
     /* 1. Make sure there is not a registered user with this email */
-    await UsersServiceHelper.assertUserExists(user.email);
+    await UsersServiceHelper.assertUserNotExists(user.email);
 
     /* Validations are removed because they are now done by express
       validator middlewares */
