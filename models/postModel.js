@@ -1,4 +1,9 @@
 import mongoose from 'mongoose'
+/* Utilities */
+import ConfigurationInjector from '../utilities/configurationInjection.js'
+
+/* access the application level configuraions */
+const cfg = new ConfigurationInjector();
 
 const postSchema = mongoose.Schema(
   {
@@ -8,7 +13,7 @@ const postSchema = mongoose.Schema(
     "price": { type: Number, required: true, min: 0 },
     "title": { type: String, required: true },
     "author": { type: String, required: true },
-    "mainImage": { type: String, default: "" },
+    "mainImage": { type: String, default: cfg.getConfig('DEFAULT_MAIN_IMAGE_URL') },
     "relatedCity": { type: mongoose.Schema.Types.ObjectId, ref: 'City', required: true },
     "relatedInstitution": { type: mongoose.Schema.Types.ObjectId, ref: 'Institution' },
     "type": { type: String, required: true },
