@@ -14,4 +14,5 @@ export default {
   PASSWORD_EMPTY: 'Şifre boş olamaz.',
   EMAIL_CANNOT_BE_MODIFIED: 'Email değiştirilemez.',
   PASSWORD_CANNOT_BE_MODIFIED: 'Şifre değiştirilemez.',
+  NAME_IS_REQUIRED: 'İsim girilmesi zorunludur.',
 };
