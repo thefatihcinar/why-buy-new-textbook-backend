@@ -19,6 +19,10 @@ class PostsServiceHelper {
     }
     else return post;
   }
+
+  static async assertPostExists(postID) {
+    // TO-DO
+  }
 }
 
 class PostsService {
