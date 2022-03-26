@@ -48,10 +48,6 @@ const addImagetoPost = asyncHandler( async (request, response) => {
 // @access  private 
 const updatePost = asyncHandler( async (request, response) => {
 
-    // To-Do: Get the product id from route
-    // To-Do: Get the NEW POST INFORMATION from body 
-    // To-Do: Go get the posts with the given id & update it 
-
     let updatedPost = await PostsService.updatePost(request.params.id, request.body);
     
     response.send(updatedPost)
@@ -61,10 +57,6 @@ const updatePost = asyncHandler( async (request, response) => {
 // @route   DELETE /posts/:id
 // @access  private 
 const deletePost = asyncHandler( async (request, response) => {
-
-    // To-Do: Get the id from route
-    // To-Do: Get the post from database with given id 
-    // To-Do: Delete this post from database
 
     let deleteConfigurations = {softDelete: true, hardDelete: false};
     let deletedPost = await PostsService.deletePost(request.params.id, deleteConfigurations)
