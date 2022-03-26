@@ -43,10 +43,17 @@ const logoutUser = asyncHandler( async (request, response) => {
 
 const getUserProfile = asyncHandler( async (request, response) => {
 
-    // To-Do: Learn who connects from token/session
-    // To-Do: Get the user from database
+    try {
+        let userID = request.user._id; /* get the id of the logged in user */
+        let user = await UsersService.getUserProfile(userID);
 
-    response.send("your user profile")
+        response.send(user);
+        
+    } catch (error) {
+        /* If anything goes wrong, determine status code and re-throw the error */
+        response.status(error.code);
+        throw error;
+    }
 })
 
 const updateUserProfile = asyncHandler( async (request, response) => {
