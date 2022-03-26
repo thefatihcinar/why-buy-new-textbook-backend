@@ -3,9 +3,6 @@ import User from '../models/userModel.js';
 /* Services */
 import UsersService from '../services/usersService.js';
 
-/* Helpers */
-import generateToken from '../utilities/generateToken.js';
-
 // @desc    create new users
 // @route   POST /users
 // @access  private 

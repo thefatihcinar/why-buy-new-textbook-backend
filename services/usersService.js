@@ -3,70 +3,65 @@
 import User from "../models/userModel.js";
 /* Utilities */
 import { isEmpty } from '../utilities/emptiness.js'
-import emailValidator from "../utilities/emailValidation.js";
-import generateToken from '../utilities/generateToken.js';
+import Token from "../utilities/token.js";
+
+class UsersServiceHelper {
+  static async doesUserExist(userId) {
+    /* this method make sures that the requested user is existing
+       in the database, otherwise it returns false */
+    let user = await User.findById(userId);
+    if (isEmpty(user)) {
+      return false;
+    }
+    else return user;
+  }
+
+  static async doesUserExistByEmail(email) {
+    /* this method computes whether this user exists in the database
+        or not based on the email provided */
+    
+    if(isEmpty(email)) throw new Error("email is empty");
+
+    let user = await User.findOne({email: email});
+
+    if(isEmpty(user)) {
+      return false;
+    }
+    else return true;
+  }
+}
 
 class UsersService{
 
   static async registerNewUser(user){
 
-    /* Initial Validations */
-    /* Make sure none of them is empty */
-
-    /* this code block makes sure that none of the fields are empty */
-
-    // Get user input
-    let name = user.name, email = user.email, password = user.password;
-
-    for(let key in user){
-
-      let value =  user[key]; // get the value for this key of this user
-
-      if(isEmpty(value)) {
-        throw new Error(`${key} cannot be empty`);
-        break;
-      }
+    /* 1. Make sure there is not a registered user with this email */
+    if(await UsersServiceHelper.doesUserExistByEmail(user.email)){
+      /* it means that there is a registered user with this email */
+      throw new Error("user already exists");
     }
 
-    // Null check for input
-    if (email === undefined || password === undefined || name === undefined ) {
-      throw new Error("Email, password, name  must be provided");
-      return;
-    }
-
-    /* EMail Validation */
-    if (!emailValidator(email)){
-      // Check whether email is valid or not, if the email is not verified
-      throw new Error("Email is not in the right format");
-      return;
-    }
+    /* Validations are removed because they are now done by express
+      validator middlewares */
  
-    // 1. Check if user already exists or not
-    let existingUser = await User.findOne({ email: email });
- 
-    if (existingUser) {
-      throw new Error("User Already Exists");
-      return;
-    }
- 
-    // 2. User does not exist, Create the user
-    let newUser = await User.create({name, email, password});
-     
-    // Check if user has been created successfully
+    /* 2. If User does not exist, create new user */
+    let newUser = await User.create(user);
+
+    /* 3. Return the created user */
+      /* Also check whether it is created successfully or not */
     if(newUser){ 
-      let registeredUserJSON= {
-        _id: newUser._id,
-        name: newUser.name,
-        email: newUser.email,
-        token: generateToken(newUser._id)
+      let registeredUser = {
+          _id: newUser._id,
+          name: newUser.name,
+          email: newUser.email,
+          phoneNumber: newUser.phoneNumber,
+          token: Token.generateBearerToken(newUser._id)
       }; 
 
-      return registeredUserJSON;
+      return registeredUser;
     }
-
     else if(!newUser){
-      throw new Error("User has not been created"); 
-      return;
+      throw new Error("user could not be created");
     }
   }
 
@@ -90,7 +85,7 @@ class UsersService{
             _id: inputUser._id,
             name: inputUser.name,
             email: inputUser.email,
-            token: generateToken(inputUser._id)
+            token: Token.generateBearerToken(inputUser._id)
         }
         return loggedInUserJSON;
     }
