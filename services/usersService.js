@@ -3,6 +3,7 @@ import User from "../models/userModel.js";
 /* Utilities */
 import { isEmpty } from '../utilities/emptiness.js'
 import Token from "../utilities/token.js";
+import PostsService from "./postsService.js";
 
 
 class UsersServiceHelper {
@@ -108,6 +109,14 @@ class UsersService {
 
     let deactivated = await User.findByIdAndUpdate(userID, { isActive: false }, { new: true });
     
+    /* Additionally, make a soft delete of the user's posts */
+
+    let usersPosts = await PostsService.getPostsByUserID(userID);
+
+    for (post of usersPosts){
+      await PostsService.deletePost(post._id, { softDelete: true, hardDelete: false });
+    }
+
     return deactivated;
   }
 
@@ -115,7 +124,7 @@ class UsersService {
   static async activateUser(userID){
     /* this service reactivates an inactive user given with user id */
 
-    // TO-DO: Implement this
+    
   }
 
   static async updateUser(userID, user){
