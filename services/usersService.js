@@ -5,7 +5,6 @@ import { isEmpty } from '../utilities/emptiness.js'
 import Token from "../utilities/token.js";
 import PostsService from "./postsService.js";
 
-
 class UsersServiceHelper {
 
   static async doesUserExist(userId) {
