@@ -6,6 +6,7 @@ import { authenticate, softAuthentication } from '../middlewares/authentication.
 import { postsAuthorization } from '../middlewares/authorization.js'
 import active from '../middlewares/active.js'
 import validateInput from '../middlewares/validateInput.js'
+import { postExistence } from '../middlewares/existence.js'
 /* Validators */
 import { createPostValidator, editPostValidator } from '../validators/postValidators.js'
 
@@ -13,10 +14,10 @@ const router = express.Router();
 
 router.route("/").get(softAuthentication, getRecommendedPosts);
 router.route("/").post(authenticate, active, createPostValidator, validateInput, createPost);
-router.route("/:id").put(authenticate, active, postsAuthorization, editPostValidator, validateInput, updatePost);
-router.route("/:id").delete(authenticate, active, postsAuthorization, deletePost);
-router.route("/:id").get(getPost);
-router.route("/:id/favorite").put(authenticate, active, favoritePost);
-router.route("/:id/sold").put(authenticate, active, postsAuthorization, markPostAsSold);
+router.route("/:id").put(authenticate, active, postsAuthorization, postExistence, editPostValidator, validateInput, updatePost);
+router.route("/:id").delete(authenticate, active, postsAuthorization, postExistence, deletePost);
+router.route("/:id").get(postExistence, getPost);
+router.route("/:id/favorite").put(authenticate, active, postExistence, favoritePost);
+router.route("/:id/sold").put(authenticate, active, postsAuthorization, postExistence, markPostAsSold);
 
 export default router;
