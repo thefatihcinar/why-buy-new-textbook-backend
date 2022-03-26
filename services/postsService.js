@@ -8,6 +8,19 @@ import { isEmpty } from '../utilities/emptiness.js'
 /* Configurations */
 const pageSize = 16;
 
+class PostsServiceHelper {
+
+  static async doesPostExist(postID) {
+    /* this method make sures that the requested post is existing
+       in the database, otherwise it returns false */
+    let post = await Post.findById(postID);
+    if (isEmpty(post)) {
+      return false;
+    }
+    else return post;
+  }
+}
+
 class PostsService {
 
   static async createNewPost (post, user){
@@ -182,6 +195,22 @@ class PostsService {
     /* this service brings the newest posts published in the system */
     
     // TO-DO: Implement this
+  }
+
+  static async ressurrectPost(postID){
+    /* this service resurrects the post with the given post id 
+       in other words, it brings the post back that is softly deleted */
+
+    /* first check whether this post is existing or not */
+    if(PostsServiceHelper.doesPostExist(postID) === false){
+      throw new Error("post not found to resurrect");
+      return;
+    }
+
+    /* resurrect this post */
+    let resurrectedPost = await Post.updateOne({_id: postID}, { $set: { isDeleted: false } } , { new: true });
+
+    return resurrectedPost;
   }
   
 }
