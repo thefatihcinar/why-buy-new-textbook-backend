@@ -101,7 +101,14 @@ class UsersService {
   static async deactivateUser(userID){
     /* this service deactivates an active user given with user id */
 
-    // TO-DO: Implement this
+    /* Make sure user with this user id exists */
+    if( !await UsersServiceHelper.doesUserExist(userID) ){
+      throw new Error("user not found");
+    }
+
+    let deactivated = await User.findByIdAndUpdate(userID, { isActive: false }, { new: true });
+    
+    return deactivated;
   }
 
   
