@@ -51,11 +51,16 @@ const getUserProfile = asyncHandler( async (request, response) => {
 
 const updateUserProfile = asyncHandler( async (request, response) => {
 
-    // To-Do: Get the user information from json 
-    // To-Do: Learn who connects from token/session
-    // To-Do: Update database
+    try {
+        let updatedUser = await UsersService.updateUserProfile(request.body);
 
-    response.send("updated profile")
+        response.send(updatedUser);
+        
+    } catch (error) {
+        /* If anything goes wrong, determine status code and re-throw the error */
+        response.status(error.code);
+        throw error;
+    }
 })
 
 export {registerUser, loginUser, logoutUser, getUserProfile, updateUserProfile};
