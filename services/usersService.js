@@ -145,7 +145,16 @@ class UsersService {
   static async updateUser(userID, user){
     /* this service updates the user with the given user id */
 
-    // TO-DO: Implement this
+    /* Make sure user with this user id exists */
+    if( !await UsersServiceHelper.doesUserExist(userID) ){
+      throw new Error("user not found");
+    }
+
+    /* Update the user */
+    let updatedUser = await User.findByIdAndUpdate(userID, user, { new: true });
+
+    return updatedUser;
+
   }
 
   static async updateUserProfilePicture(userID, imageURL){
