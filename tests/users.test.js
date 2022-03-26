@@ -52,5 +52,19 @@ describe("RegisterinG a New User", () => {
   
   })
 
+  describe("password", () => {
+      
+    describe("when password is less than 5 chars", () => {
+      
+      test("should respond not found 404", async () => {
+          const response  = await request(app).get("/posts/613a40b6a3e499258cd28341").send();
+          console.log("response", response);
+          expect( response.statusCode ).toBe(404)
+      })
+    
+    })
+  
+  })
+
 
 })
