@@ -34,7 +34,7 @@ const userExistence = asyncHandler(async (request, response, next) => {
   /* if there is no such a USER, return NOT_FOUND */
   if (!user) {
     response.status(StatusCodes.NOT_FOUND);
-    throw new Error(userMessages.POST_NOT_FOUND);
+    throw new Error(userMessages.USER_NOT_FOUND);
   }
 
   next();
