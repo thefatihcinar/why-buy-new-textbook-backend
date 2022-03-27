@@ -41,6 +41,11 @@ class PostsService {
 
     /* Create a new post in the database with the given post data */
     let createdPost = await Post.create(post); 
+
+    if( !createdPost ){
+      throw new Error(msg.POST_NOT_CREATED);
+    }
+    
     /* Associate this post with the user who publishes it */
     await User.updateOne({_id: user._id}, { $push: { publishedPosts: createdPost._id } } );  
 
