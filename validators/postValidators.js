@@ -40,10 +40,10 @@ const createPostValidator = [
   body('city').isIn(cities).withMessage(msg.INVALID_CITY_FORMAT),
 
   /* validate for field: isShippable*/
-  body('city').isBoolean().withMessage(msg.SHIPPABLE_TRUE_OR_FALSE),
+  body('isShippable').isBoolean().withMessage(msg.SHIPPABLE_TRUE_OR_FALSE),
 
   /* validate for field: isAvailableForFacetoFaceSelling*/
-  body('city').isBoolean().withMessage(msg.FACETOFACESELLING_TRUE_OR_FALSE),
+  body('isAvailableForFacetoFaceSelling').isBoolean().withMessage(msg.FACETOFACESELLING_TRUE_OR_FALSE),
 ];
 
 const editPostValidator = [
