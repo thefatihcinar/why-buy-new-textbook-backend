@@ -52,7 +52,7 @@ const getUserProfile = asyncHandler( async (request, response) => {
 const updateUserProfile = asyncHandler( async (request, response) => {
 
     try {
-        let updatedUser = await UsersService.updateUserProfile(request.body);
+        let updatedUser = await UsersService.updateUser(request.user._id, request.body);
 
         response.send(updatedUser);
         
