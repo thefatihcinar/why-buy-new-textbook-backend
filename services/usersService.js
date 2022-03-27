@@ -193,4 +193,4 @@ class UsersService {
   }
 }
 
-export default UsersService;
+export default { UsersService, UsersServiceHelper };

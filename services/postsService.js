@@ -4,7 +4,10 @@ import Post from "../models/postModel.js";
 import User from '../models/userModel.js'
 /* Utilities */
 import { isEmpty } from '../utilities/emptiness.js'
-
+/* Helpers */
+import { UsersServiceHelper } from '../services/usersService.js'
+/* Messages */
+import msg from '../messages/postsMessages.js'
 
 class PostsServiceHelper {
 
@@ -54,9 +57,7 @@ class PostsService {
   static async getPostByID(postID){
     /* this services gets a post by its ID */
 
-    if(isEmpty(postID)){
-      throw new Error("PostID must be provided");
-    }
+    await PostsServiceHelper.assertPostExists(postID);
 
     let post = await Post.findById(postID);
 
@@ -67,12 +68,7 @@ class PostsService {
     /* this service gets all the posts that are published by the given user id */
 
     /* first check whether there is such user with the given user id */
-    let user = await User.findById(userID);
-
-    if(!user){
-      // if there is not such a user, do not get posts of him
-      throw new Error("There is no user with the given user id");
-    }
+    await UsersServiceHelper.assertUserExists(userID);
 
     let postsOfThisUser = await Post.find({seller: userID});
 
@@ -83,12 +79,7 @@ class PostsService {
     /* this service gets all the posts that are starred by the given user id */
 
      /* first check whether there is such user with the given user id */
-     let user = await User.findById(userID);
-
-     if(!user){
-       // if there is not such a user, do not get starred posts of him
-       throw new Error("There is no user with the given user id");
-     }
+     await UsersServiceHelper.assertUserExists(userID);
 
      let starredPostsOfThisUser = user.starredPosts;
  
@@ -97,6 +88,8 @@ class PostsService {
 
   static async deletePost(postID, deleteConfigurations){
     /* this service deletes the post with the given post id */
+
+    await PostsServiceHelper.assertPostExists(postID);
 
     if(deleteConfigurations.softDelete === true){
       /* this means make a soft delete of this object, i.e. mark as deleted but do not delete actually */
@@ -131,14 +124,8 @@ class PostsService {
 
   static async updatePost(postID, postInformation){
     /* this service updates the post with the given post id */
-
-    /* make sure this post is existing */
-    let post = await Post.findById(postID);
-
-    if(!post){
-      throw new Error("post not found");
-      return;
-    }
+    
+    await PostsServiceHelper.assertPostExists(postID);
 
     /* update this post */
     let updatedPost = await Post.updateOne({_id: postID}, { $set: postInformation } , { new: true });
@@ -150,6 +137,8 @@ class PostsService {
   static async addImageToPost(postID, imageURL){
     /* this service adds an image to the post with the given post id */
 
+    await PostsServiceHelper.assertPostExists(postID);
+    
     // TO-DO: Implement this
   }
 
@@ -157,14 +146,8 @@ class PostsService {
     /* this service stars the post with the given post id by the given user id */
 
     /* check this user id and post id is valid */
-    let user = await User.findById(userID);
-    let post = await Post.findById(postID);
-
-    if(!user || !post){
-      // if neither this user nor this post is existing, do not star this post and throw an error
-      throw new Error("user and post must be existing");
-      return;
-    }
+    await PostsServiceHelper.assertPostExists(postID);
+    await UsersServiceHelper.assertUserExists(userID);
 
     /* check whether this post is already starred by this user */
     let isAlreadyStarred = await user.starredPosts.includes(postID);
@@ -187,12 +170,7 @@ class PostsService {
     /* this service marks the post with the given post id as sold */
 
     /* first check whether this post is existing or not */
-    let post = await Post.findById(postID);
-
-    if(!post){
-      throw new Error("post not found to mark as sold");
-      return;
-    }
+    await PostsServiceHelper.assertPostExists(postID);
 
     /* mark this post as sold */
     let updatedPost = await Post.updateOne({_id: postID}, { $set: { isSold: true } } , { new: true });
@@ -211,11 +189,7 @@ class PostsService {
     /* this service resurrects the post with the given post id 
        in other words, it brings the post back that is softly deleted */
 
-    /* first check whether this post is existing or not */
-    if(PostsServiceHelper.doesPostExist(postID) === false){
-      throw new Error("post not found to resurrect");
-      return;
-    }
+    await PostsServiceHelper.assertPostExists(postID);
 
     /* resurrect this post */
     let resurrectedPost = await Post.updateOne({_id: postID}, { $set: { isDeleted: false } } , { new: true });

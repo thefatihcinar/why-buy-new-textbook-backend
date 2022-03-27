@@ -1,7 +1,7 @@
 import asyncHandler from 'express-async-handler'
 import { StatusCodes } from 'http-status-codes';
 /* Services */
-import UsersService from '../services/usersService.js';
+import { UsersService } from '../services/usersService.js';
 
 
 // @desc    create new users
