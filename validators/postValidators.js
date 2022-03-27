@@ -2,9 +2,9 @@ import { body, validationResult } from 'express-validator'
 /* Messages */
 import msg from '../messages/postMessages.js'
 /* Values For Type, City and Condition */
-import types from '../data/types.js'
-import cities from '../data/cities.json'
-import conditions from '../data/conditions.js'
+import TypesService  from '../services/typesService.js'
+import CitiesService from '../services/citiesService.js'
+import ConditionsService from '../services/conditionsService.js'
 
 
 const createPostValidator = [
@@ -24,7 +24,7 @@ const createPostValidator = [
 
   /* validate for field: type*/
   body('type').notEmpty().withMessage(msg.TYPE_IS_REQUIRED),
-  body('type').isIn(types).withMessage(msg.INVALID_TYPE_FORMAT),
+  body('type').isIn(TypesService.getTypes).withMessage(msg.INVALID_TYPE_FORMAT),
 
   /* validate for field: description*/
   body('description').notEmpty().withMessage(msg.DESCRIPTION_IS_REQUIRED),
@@ -32,12 +32,12 @@ const createPostValidator = [
 
   /* validate for field: condition*/
   body('condition').notEmpty().withMessage(msg.CONDITION_IS_REQUIRED),
-  body('condition').isIn(conditions).withMessage(msg.INVALID_CONDITION_FORMAT),
+  body('condition').isIn(ConditionsService.getConditions).withMessage(msg.INVALID_CONDITION_FORMAT),
 
 
   /* validate for field: city*/
   body('city').notEmpty().withMessage(msg.CITY_IS_REQUIRED),
-  body('city').isIn(cities).withMessage(msg.INVALID_CITY_FORMAT),
+  body('city').isIn(CitiesService.getAllCityIDs).withMessage(msg.INVALID_CITY_FORMAT),
 
   /* validate for field: isShippable*/
   body('isShippable').isBoolean().withMessage(msg.SHIPPABLE_TRUE_OR_FALSE),
