@@ -31,24 +31,6 @@ class PostsServiceHelper {
   }
 }
 
-
-class PostsServiceHelper {
-
-  static async doesPostExist(postID) {
-    /* this method make sures that the requested post is existing
-       in the database, otherwise it returns false */
-    let post = await Post.findById(postID);
-    if (isEmpty(post)) {
-      return false;
-    }
-    else return post;
-  }
-
-  static async assertPostExists(postID) {
-    // TO-DO
-  }
-}
-
 class PostsService {
 
   static async createNewPost (post, user){
