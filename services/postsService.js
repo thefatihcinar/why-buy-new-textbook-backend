@@ -5,8 +5,32 @@ import User from '../models/userModel.js'
 /* Utilities */
 import { isEmpty } from '../utilities/emptiness.js'
 
-/* Configurations */
-const pageSize = 16;
+
+class PostsServiceHelper {
+
+  static async doesPostExist(postID) {
+    /* this method make sures that the requested post is existing
+       in the database, otherwise it returns false */
+    let post = await Post.findById(postID);
+    if (isEmpty(post)) {
+      return false;
+    }
+    else return post;
+  }
+
+  static async assertPostExists(postID) {
+    /* this method makes sure that the post exists in the database
+       and if not it throws an error */
+
+    if( !await PostsServiceHelper.doesPostExist(postID) ){
+      const error = new Error();
+      error.message = msg.POST_NOT_FOUND;
+      error.code = StatusCodes.NOT_FOUND;
+      throw error;
+    }
+  }
+}
+
 
 class PostsServiceHelper {
 
