@@ -1,4 +1,6 @@
 import { body, validationResult } from 'express-validator' 
+/* Messages */
+import msg from '../messages/postMessages.js'
 
 const createPostValidator = [
   body('title').isEmail(),
