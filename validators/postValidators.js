@@ -1,9 +1,10 @@
 import { body, validationResult } from 'express-validator' 
 /* Messages */
 import msg from '../messages/postMessages.js'
-/* Values For Type, City and Condition */
+/* Values For Type, City, Institution and Condition */
 import TypesService  from '../services/typesService.js'
 import CitiesService from '../services/citiesService.js'
+import InstitutionsService from '../services/institutionsService.js'
 import ConditionsService from '../services/conditionsService.js'
 
 
@@ -36,8 +37,11 @@ const createPostValidator = [
 
 
   /* validate for field: city*/
-  body('city').notEmpty().withMessage(msg.CITY_IS_REQUIRED),
-  body('city').isIn(CitiesService.getAllCityIDs).withMessage(msg.INVALID_CITY_FORMAT),
+  body('relatedCity').notEmpty().withMessage(msg.CITY_IS_REQUIRED),
+  body('relatedCity').isIn(CitiesService.getAllCityIDs).withMessage(msg.INVALID_CITY_FORMAT),
+  
+  /* validate for field: institution*/
+  body('relatedInstitution').isIn(InstitutionsService.getInstitutions).withMessage(msg.INVALID_INSTITUTION_FORMAT),
 
   /* validate for field: isShippable*/
   body('isShippable').isBoolean().withMessage(msg.SHIPPABLE_TRUE_OR_FALSE),

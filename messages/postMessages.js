@@ -15,6 +15,8 @@ export default {
   INVALID_CITY_FORMAT: 'Geçerli bir şehir giriniz.',
   CITY_EMPTY: 'Şehir boş olamaz.',
 
+  INVALID_INSTITUTION_FORMAT: 'Geçerli bir kurum giriniz.',
+
   TYPE_IS_REQUIRED: 'Tip girilmesi zorunludur.',
   INVALID_TYPE_FORMAT: 'Geçerli bir tip giriniz.',
   TYPE_EMPTY: 'Tip boş olamaz.',
