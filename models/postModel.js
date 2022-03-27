@@ -12,7 +12,7 @@ const postSchema = mongoose.Schema(
     "isAvailableForFacetoFaceSelling": { type: Boolean, default: true },
     "price": { type: Number, required: true, min: 0 },
     "title": { type: String, required: true },
-    "author": { type: String, required: true },
+    "author": { type: String },
     "mainImage": { type: String, default: cfg.getConfig('DEFAULT_MAIN_IMAGE_URL') },
     "relatedCity": { type: mongoose.Schema.Types.ObjectId, ref: 'City', required: true },
     "relatedInstitution": { type: mongoose.Schema.Types.ObjectId, ref: 'Institution' },
