@@ -5,9 +5,9 @@ import User from '../models/userModel.js'
 /* Utilities */
 import { isEmpty } from '../utilities/emptiness.js'
 /* Helpers */
-import { UsersServiceHelper } from '../services/usersService.js'
+import UsersServiceHelper from './usersService.js'
 /* Messages */
-import msg from '../messages/postsMessages.js'
+import msg from '../messages/postMessages.js'
 
 class PostsServiceHelper {
 
