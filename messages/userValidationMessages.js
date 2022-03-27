@@ -3,7 +3,7 @@ export default {
   INVALID_PHONE_NUMBER: 'Geçerli bir telefon numarası giriniz.',
   INVALID_EMAIL: 'Geçerli bir email giriniz.',
   INVALID_EMAIL_FORMAT: 'Geçerli bir email giriniz.',
-  PASSWORD_LENGTH_BELOW_MINIMUM_CHARACTERS: 'Şifreniz en az 8 karakterden oluşmalıdır.',
+  PASSWORD_LENGTH_BELOW_MINIMUM_CHARACTERS: 'Şifreniz en az 6 karakterden oluşmalıdır.',
   PASSWORD_MUST_CONTAIN_AT_LEAST_ONE_NUMBER: 'Şifreniz en az bir sayı içermelidir.',
   PASSWORD_MUST_CONTAIN_AT_LEAST_ONE_LOWERCASE_LETTER: 'Şifreniz en az bir küçük harf içermelidir.',
   PASSWORD_MUST_CONTAIN_AT_LEAST_ONE_UPPERCASE_LETTER: 'Şifreniz en az bir büyük harf içermelidir.',
@@ -15,4 +15,6 @@ export default {
   EMAIL_CANNOT_BE_MODIFIED: 'Email değiştirilemez.',
   PASSWORD_CANNOT_BE_MODIFIED: 'Şifre değiştirilemez.',
   NAME_IS_REQUIRED: 'İsim girilmesi zorunludur.',
+  NAME_IS_NOT_STRING: 'Geçerli bir isim giriniz.',
+  PHONE_NUMBER_IS_REQUIRED: 'Telefon numarası girilmesi zorunludur.',
 };
