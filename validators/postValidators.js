@@ -1,6 +1,6 @@
 import { body, validationResult } from 'express-validator' 
 /* Messages */
-import msg from '../messages/postMessages.js'
+import msg from '../messages/postValidationMessages.js'
 /* Values For Type, City, Institution and Condition */
 import TypesService  from '../services/typesService.js'
 import CitiesService from '../services/citiesService.js'
