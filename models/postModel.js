@@ -1,6 +1,7 @@
 import mongoose from 'mongoose'
 /* Utilities */
 import ConfigurationInjector from '../utilities/configurationInjection.js'
+import User from '../models/userModel.js'
 
 /* access the application level configuraions */
 const cfg = new ConfigurationInjector();
@@ -26,6 +27,17 @@ const postSchema = mongoose.Schema(
     "starredBy": [ { type: mongoose.Schema.Types.ObjectId, ref: 'User' }]
 
   },{ timestamps : true});
+
+/* Delete users' posts when user is removed */
+  postSchema.pre("remove", async function (next) {
+    const post = this;
+
+    await User.deleteMany({ publishedPosts: post._id });
+    await User.deleteMany({ starredPosts: post._id });
+    await User.deleteMany({ recommendedPosts: post._id });
+
+    next();
+});
 
 /* create Post model from this schema */
 
