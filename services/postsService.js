@@ -106,17 +106,6 @@ class PostsService {
       /* this means make a hard delete of this object */
       let deletedPost = await Post.deleteById(postID);
 
-      /* remove this post id form the published posts of the seller */
-      await User.updateOne({_id: deletedPost.seller}, { $pull: { publishedPosts: postID } } );
-
-      /* remove this post id from the starred posts of the seller */
-      await User.updateOne({_id: deletedPost.seller}, { $pull: { starredPosts: postID } } );
-
-      /* remove this post id from the recommended posts of the seller */
-      await User.updateOne({_id: deletedPost.seller}, { $pull: { recommendedPosts: postID } } );
-
-      // To Do: Delete this references from all other users
-
       return deletedPost;
       /* break down its relation with user as well */
 
