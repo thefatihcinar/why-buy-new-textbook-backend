@@ -53,11 +53,23 @@ class PostsService {
 
   }
 
-  static async searchPost(searchParameters){
-    /* this service searches for posts with given search/filtering parameters */
+  static async searchPost(queryString){
+    /* this service searches for posts with the given query string, no pagination and no filtering is done
+       pure search */
 
-    // TO-DO: Implement service
+    /* the search operation is done both in the title and in the description of the post */
+
+    if(!queryString) queryString = ""; // if no query string is provided, set it to an empty string
+
+    const result = await Post.find( { $or: 
+                                        [ 
+                                          { title: { $regex: queryString, $options: 'i' } }, 
+                                          { description: { $regex: queryString, $options: 'i' } }
+                                        ] 
+                                    });
+    return result;
   }
+  
 
   static async getPostByID(postID){
     /* this services gets a post by its ID */
