@@ -1,42 +1,66 @@
-function registerUser(request, response){
+import asyncHandler from 'express-async-handler'
+import { StatusCodes } from 'http-status-codes';
+/* Services */
+import UsersService from '../services/usersService.js';
 
-    // To-Do: Get the user information from json 
-    // To-Do: Create user in database
 
-    response.send("register user")
-}
+// @desc    create new users
+// @route   POST /users
+// @access  private 
+const registerUser = asyncHandler( async (request, response) => {
 
-function loginUser(request, response){
+    try {
+        let registeredUser = await UsersService.registerNewUser(request.body)
 
-    // To-Do: Get the user information from json 
-    // To-Do: Get this user from database
-    // To-Do: Check user email address and password
+        response.send(registeredUser)
+    } catch (error) {
+        /* If anything goes wrong, determine status code and re-throw the error */
+        response.status(error.code);
+        throw error;
+    }
+})
 
-    response.send("login")
-}
+const loginUser = asyncHandler( async (request, response) => {
 
-function logoutUser(request, response){
+    try {
+        let loggedInUser = await UsersService.loginUser(request.body)
+        
+        response.send(loggedInUser)
+    } catch (error) {
+        /* If anything goes wrong, determine status code and re-throw the error */
+        response.status(error.code);
+        throw error;
+    }
+    
+})
 
-    // To-Do: Remove session
+const getUserProfile = asyncHandler( async (request, response) => {
 
-    response.send("logged out")
-}
+    try {
+        let userID = request.user._id; /* get the id of the logged in user */
+        let user = await UsersService.getUserProfile(userID);
 
-function getUserProfile(request, response){
+        response.send(user);
+        
+    } catch (error) {
+        /* If anything goes wrong, determine status code and re-throw the error */
+        response.status(error.code);
+        throw error;
+    }
+})
 
-    // To-Do: Learn who connects from token/session
-    // To-Do: Get the user from database
+const updateUserProfile = asyncHandler( async (request, response) => {
 
-    response.send("your user profile")
-}
+    try {
+        let updatedUser = await UsersService.updateUser(request.user._id, request.body);
 
-function updateUserProfile(request, response){
+        response.send(updatedUser);
+        
+    } catch (error) {
+        /* If anything goes wrong, determine status code and re-throw the error */
+        response.status(error.code);
+        throw error;
+    }
+})
 
-    // To-Do: Get the user information from json 
-    // To-Do: Learn who connects from token/session
-    // To-Do: Update database
-
-    response.send("updated profile")
-}
-
-export {registerUser, loginUser, logoutUser, getUserProfile, updateUserProfile};
+export {registerUser, loginUser, getUserProfile, updateUserProfile};

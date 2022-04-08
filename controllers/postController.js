@@ -1,41 +1,121 @@
-function addPost(request, response){
+import asyncHandler from 'express-async-handler';
+import { validationResult } from 'express-validator';
+import Post from "../models/postModel.js"
+import User from '../models/userModel.js';
+/* Services */
+import PostsService from '../services/postsService.js';
+/* Utilities */
+import { isEmpty } from '../utilities/emptiness.js';
 
-    // To-Do: Get the post information from json 
-    // To-Do: Create post in database
+// @desc    create new posts
+// @route   POST /posts
+// @access  private 
+const createPost = asyncHandler( async (request, response) => {
 
-    response.send("post was added")
-}
+    let createdPost = PostsService.createNewPost(request.body, request.user);
+    
+    response.send(createdPost)
+})
 
-function updatePost(request, response){
+// @desc    get specific posts with given keywords and filters 
+// @route   GET /posts/filterandsearch
+// @access  public 
+const searchPost = asyncHandler( async (request, response) => {
 
-    // To-Do: Get the post information from json 
-    // To-Do: Update database
+    /* this service searches for posts with given search/filtering parameters */
 
-    response.send("post was updated")
-}
+    // TO-DO: Implement service
 
-function deletePost(request, response){
+    response.send("Searched posts")
+})
 
-    // To-Do: Get the post information from json 
-    // To-Do: Delete this post from database
+// @desc    add new image to an existing post
+// @route   POST /posts/:id/images
+// @access  private 
+const addImagetoPost = asyncHandler( async (request, response) => {
+    // To-Do : Get the images file
+    // To-Do: Upload Image to AWS S3
+    // To-Do: Get Post Id from route
+    // To-Do: Insert image url into images array
+    
+    let addedImagetoPost = await PostsService.addImageToPost(request.params.id, imageURL)
 
-    response.send("post was deleted")
-}
+    response.send(addedImagetoPost)
+})
 
-function getPost(request, response){
+// @desc    update an existing post
+// @route   PUT /posts/:id
+// @access  private 
+const updatePost = asyncHandler( async (request, response) => {
 
-    // To-Do: Get the post from database
+    let updatedPost = await PostsService.updatePost(request.params.id, request.body);
+    
+    response.send(updatedPost)
+})
 
-    response.send("single post")
-}
+// @desc    delete an existing post
+// @route   DELETE /posts/:id
+// @access  private 
+const deletePost = asyncHandler( async (request, response) => {
 
-function favoritePost(request, response){
+    let deleteConfigurations = {softDelete: true, hardDelete: false};
+    let deletedPost = await PostsService.deletePost(request.params.id, deleteConfigurations)
 
-    // To-Do: Get the post id from json
+    response.send(deletedPost)
+})
+
+// @desc    get a specific post with a given id
+// @route   GET /posts/:id
+// @access  public 
+const getPost = asyncHandler( async (request, response) => {
+
+    let post = await PostsService.getPostByID(request.params.id);
+
+    if(isEmpty(post)){
+        response.status(404);
+        throw new Error("post not found");
+    }
+    
+    response.send(post);
+})
+
+// @desc    favorite an existing post
+// @route   PUT /posts/:id/favorite
+// @access  private 
+const favoritePost = asyncHandler( async (request, response) => {
+    // To-Do: Get the post id from route
     // To-Do: Learn who connects from token/session
     // To-Do: Update post as favorite or unfavorite for the user
+    
+    let starredPost = await PostsService.starPost(request.params.id, request.user.id);
 
-    response.send("Make post favorite")
-}
+    response.send(starredPost)
+});
 
-export {addPost, updatePost, deletePost, getPost, favoritePost};
+// @desc    get the recommended posts (main page posts) for logged-in or not-logged-in users 
+// @route   GET /posts
+// @access  public/private 
+const getRecommendedPosts = asyncHandler( async (request, response) => {
+    /* this controller will get the recommended posts for the desiring user, in order to
+       be displayed in main page
+       even if there is not an authenticated user, still recommends posts based on a logic developed */
+
+    // To-do: Learn whether there is a user or not
+    // To-d: make recommendations based on that
+
+    response.send("main page posts");
+});
+
+
+// @desc    mark post as sold
+// @route   PUT /posts/:id/sold
+// @access  private
+const markPostAsSold = asyncHandler( async (request, response) => {
+    /* this service marks the post with the given post id as sold */
+
+       let soldPost = await PostsService.markPostAsSold(request.params.id)
+
+       response.send(soldPost);
+});
+
+export {createPost, searchPost, addImagetoPost, updatePost, deletePost, getPost, favoritePost, getRecommendedPosts, markPostAsSold};

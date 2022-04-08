@@ -1,17 +1,23 @@
 import express from 'express'
-import { addPost, updatePost, deletePost, getPost, favoritePost } from '../controllers/postController.js'
+/* Controllers */
+import { createPost, updatePost, deletePost, getPost, favoritePost, getRecommendedPosts, markPostAsSold } from '../controllers/postController.js'
+/* Middlewares */
+import { authenticate, softAuthentication } from '../middlewares/authentication.js'
+import { postsAuthorization } from '../middlewares/authorization.js'
+import active from '../middlewares/active.js'
+import validateInput from '../middlewares/validateInput.js'
+import { postExistence } from '../middlewares/existence.js'
+/* Validators */
+import { createPostValidator, editPostValidator } from '../validators/postValidators.js'
 
 const router = express.Router();
 
-// post '/posts/7' => 7. ilan
-// post '/posts/favorite-post' => 7. ilan, 8. ilan gibi favorilere ekler
-// post '/posts/post-information' => kişinin ilan id'sini alarak güncelleme yaparız veya sileriz
-
-
-router.route("/").post(addPost);
-router.route("/post-information").put(updatePost);
-router.route("/post-information").post(deletePost);
-router.route("/").get(getPost);
-router.route("/favorite-post").post(favoritePost);
+router.route("/").get(softAuthentication, getRecommendedPosts);
+router.route("/").post(authenticate, active, createPostValidator, validateInput, createPost);
+router.route("/:id").put(authenticate, active, postsAuthorization, postExistence, editPostValidator, validateInput, updatePost);
+router.route("/:id").delete(authenticate, active, postsAuthorization, postExistence, deletePost);
+router.route("/:id").get(postExistence, getPost);
+router.route("/:id/favorite").put(authenticate, active, postExistence, favoritePost);
+router.route("/:id/sold").put(authenticate, active, postsAuthorization, postExistence, markPostAsSold);
 
 export default router;
