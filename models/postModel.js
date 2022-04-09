@@ -32,12 +32,12 @@ postSchema.pre('find', softDeleteMiddleware);
 postSchema.pre('findOne', softDeleteMiddleware);
 
 function softDeleteMiddleware(next) {
-  // If `isDeleted` is not set on the query, set it to `false` so we only
-  // get docs that haven't been deleted by default
-  var filter = this.getQuery();
-  if (filter.isDeleted == null) {
-    filter.isDeleted = false;
-  }
+  // If `isDeleted` is not set on the query, set it to `false` so we only, get docs that haven't been deleted by default
+  
+  let filter = this.getQuery();
+
+  if (filter.isDeleted == null) filter.isDeleted = false;
+  
   next();
 }
 
@@ -46,12 +46,25 @@ postSchema.pre('find', isSoldMiddleware);
 postSchema.pre('findOne', isSoldMiddleware);
 
 function isSoldMiddleware(next) {
-  // If `isSold` is not set on the query, set it to `false` so we only
-  // get docs that haven't been sold by default
-  var filter = this.getQuery();
-  if (filter.isSold == null) {
-    filter.isSold = false;
-  }
+  // If `isSold` is not set on the query, set it to `false` so we only, get posts that haven't been sold by default
+  let filter = this.getQuery();
+  
+  if (filter.isSold == null) filter.isSold = false;
+
+  next();
+}
+
+postSchema.pre('find', isApprovedMiddleware);
+postSchema.pre('findOne', isApprovedMiddleware);
+
+function isApprovedMiddleware(next) {
+  // If `isApproved` is not set on the query, set it to `true` so we only get posts that are approved by default
+  // therefore do not get posts that are not approved yet
+
+  let filter = this.getQuery();
+
+  if (filter.isApproved == null) filter.isApproved = true;
+
   next();
 }
 
