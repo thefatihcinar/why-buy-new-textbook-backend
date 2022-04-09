@@ -97,10 +97,6 @@ const getPost = asyncHandler( async (request, response) => {
 
     let post = await PostsService.getPostByID(request.params.id);
 
-    if(isEmpty(post)){
-        response.status(404);
-        throw new Error("post not found");
-    }
     
     response.send(post);
 })
