@@ -16,7 +16,13 @@ class CitiesService {
   static async getAllCityIDs() {
     /* this services gets all the city IDs from the database */
 
-    let cityIDs = await City.find({}).select("__id -__v -createdAt -updatedAt");
+    let cities = await City.find({}).select("_id");
+
+    let cityIDs = [];
+
+    for(let city of cities) {
+      cityIDs.push(city._id.toString());
+    }
 
     return cityIDs;
   }

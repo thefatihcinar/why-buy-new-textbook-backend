@@ -38,7 +38,7 @@ const createPostValidator = [
   body('relatedCity').isIn(CitiesService.getAllCityIDs()).withMessage(msg.INVALID_CITY_FORMAT),
   
   /* validate for field: institution */
-  body('relatedInstitution').isIn(InstitutionsService.getInstitutions()).withMessage(msg.INVALID_INSTITUTION_FORMAT),
+  body('relatedInstitution').isIn(InstitutionsService.getAllInstitutionIDs()).withMessage(msg.INVALID_INSTITUTION_FORMAT),
 
   /* validate for field: isShippable */
   body('isShippable').isBoolean().withMessage(msg.SHIPPABLE_TRUE_OR_FALSE),
@@ -77,7 +77,7 @@ const editPostValidator = [
  body('relatedCity').isIn(CitiesService.getAllCityIDs()).withMessage(msg.INVALID_CITY_FORMAT),
  
  /* validate for field: institution */
- body('relatedInstitution').isIn(InstitutionsService.getInstitutions()).withMessage(msg.INVALID_INSTITUTION_FORMAT),
+ body('relatedInstitution').isIn(InstitutionsService.getAllInstitutionIDs()).withMessage(msg.INVALID_INSTITUTION_FORMAT),
 
  /* validate for field: isShippable */
  body('isShippable').isBoolean().withMessage(msg.SHIPPABLE_TRUE_OR_FALSE),
