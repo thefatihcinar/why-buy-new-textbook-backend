@@ -12,6 +12,7 @@ class ConfigurationInjector {
     
     const imageConfigs = JSON.parse( fs.readFileSync('./configurations/imageConfigurations.json', 'utf8'));
     const appConfigs = JSON.parse( fs.readFileSync('./configurations/applicationConfigurations.json', 'utf8'));
+    const authConfigs = JSON.parse( fs.readFileSync('./configurations/authenticationConfigurations.json', 'utf8'));
     
     /* Store those keys in the configurations object */
     Object.keys(imageConfigs).forEach(key => {
@@ -20,6 +21,10 @@ class ConfigurationInjector {
 
     Object.keys(appConfigs).forEach(key => {
       this.#configurations[key] = appConfigs[key];
+    });
+
+    Object.keys(authConfigs).forEach(key => {
+      this.#configurations[key] = authConfigs[key];
     });
 
   }
