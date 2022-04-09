@@ -33,7 +33,7 @@ class UsersServiceHelper {
     else return true;
   }
 
-  static async assertUserExists(userId) {
+  static async assertUserExists(userID) {
     /* this method makes sure that the user exists in the database
        and if not it throws an error */
 
@@ -193,4 +193,4 @@ class UsersService {
   }
 }
 
-export default { UsersService, UsersServiceHelper };
+export { UsersService, UsersServiceHelper };
