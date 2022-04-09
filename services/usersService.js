@@ -86,7 +86,10 @@ class UsersService {
       return registeredUser;
     }
     else if( !newUser ){
-      throw new Error(msg.USER_NOT_CREATED);
+      const error = new Error();
+        error.message = msg.USER_NOT_CREATED;
+        error.code = StatusCodes.INTERNAL_SERVER_ERROR;
+      throw error;
     }
   }
 
