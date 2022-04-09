@@ -158,8 +158,6 @@ class PostsService {
       let deletedPost = await Post.deleteById(postID);
 
       return deletedPost;
-      /* break down its relation with user as well */
-
     }
     else{
       throw new Error("delete configuration must be provided");
