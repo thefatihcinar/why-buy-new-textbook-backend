@@ -51,7 +51,7 @@ class RecommendationService {
         const difference = numberofPostsShown - allRecommendedPosts.length;
 
         /* as this many elements from the newest posts */
-        const newestPosts = await Post.find( { isDeleted: false } ).sort( { createdAt: -1 } ).limit(difference);
+        const newestPosts = await Post.find( {} ).sort( { createdAt: -1 } ).limit(difference);
 
         /* add the newest posts to the recommended posts as well as recommended posts */
         recommendedPosts = [...allRecommendedPosts, ...newestPosts];

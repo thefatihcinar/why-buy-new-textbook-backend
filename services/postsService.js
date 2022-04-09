@@ -233,7 +233,7 @@ class PostsService {
 
     if( all === true ) {
       /* this means that we want to bring all the newest posts */
-      let newestPosts = await Post.find( { isDeleted: false } ).sort( { createdAt: -1 } ); /* sort by createdAt in descending order */
+      let newestPosts = await Post.find( {} ).sort( { createdAt: -1 } ); /* sort by createdAt in descending order */
       return newestPosts;
     }
 
@@ -242,7 +242,7 @@ class PostsService {
     const pageLimit = cfg.getConfig('PAGE_SIZE');
 
     
-    const newestPosts = await Post.find({ isDeleted: false }).sort( { createdAt: -1 } ).limit(pageLimit);
+    const newestPosts = await Post.find({}).sort( { createdAt: -1 } ).limit(pageLimit);
     return newestPosts;
   }
 

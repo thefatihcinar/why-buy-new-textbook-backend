@@ -28,6 +28,18 @@ const postSchema = mongoose.Schema(
 
   },{ timestamps : true});
 
+postSchema.pre('find', softDeleteMiddleware);
+postSchema.pre('findOne', softDeleteMiddleware);
+
+function softDeleteMiddleware(next) {
+  // If `isDeleted` is not set on the query, set it to `false` so we only
+  // get docs that haven't been deleted by default
+  var filter = this.getQuery();
+  if (filter.isDeleted == null) {
+    filter.isDeleted = false;
+  }
+  next();
+}
 
 /* delete the references when a post is deleted
    the references are in the following collections:
