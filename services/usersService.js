@@ -99,7 +99,7 @@ class UsersService {
 
     /* Case 1: User exists and password is correct */
       /* Log In is Successful */
-    if( user && await password === user.password){
+    if( user && await user.matchPassword(password)){
         /* the user is successfully authenticated */
         let loggedInUser = {
             _id: user._id,
