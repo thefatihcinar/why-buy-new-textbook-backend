@@ -9,58 +9,33 @@ import { UsersService } from '../services/usersService.js';
 // @access  private 
 const registerUser = asyncHandler( async (request, response) => {
 
-    try {
-        let registeredUser = await UsersService.registerNewUser(request.body)
+    let registeredUser = await UsersService.registerNewUser(request.body)
 
-        response.send(registeredUser)
-    } catch (error) {
-        /* If anything goes wrong, determine status code and re-throw the error */
-        response.status(error.code);
-        throw error;
-    }
+    response.send(registeredUser)
+
 })
 
 const loginUser = asyncHandler( async (request, response) => {
 
-    try {
-        let loggedInUser = await UsersService.loginUser(request.body)
+    let loggedInUser = await UsersService.loginUser(request.body)
         
-        response.send(loggedInUser)
-    } catch (error) {
-        /* If anything goes wrong, determine status code and re-throw the error */
-        response.status(error.code);
-        throw error;
-    }
+    response.send(loggedInUser)
     
 })
 
 const getUserProfile = asyncHandler( async (request, response) => {
 
-    try {
-        let userID = request.user._id; /* get the id of the logged in user */
-        let user = await UsersService.getUserProfile(userID);
+    let userID = request.user._id; /* get the id of the logged in user */
+    let user = await UsersService.getUserProfile(userID);
 
-        response.send(user);
-        
-    } catch (error) {
-        /* If anything goes wrong, determine status code and re-throw the error */
-        response.status(error.code);
-        throw error;
-    }
+    response.send(user);
 })
 
 const updateUserProfile = asyncHandler( async (request, response) => {
 
-    try {
-        let updatedUser = await UsersService.updateUser(request.user._id, request.body);
+    let updatedUser = await UsersService.updateUser(request.user._id, request.body);
 
-        response.send(updatedUser);
-        
-    } catch (error) {
-        /* If anything goes wrong, determine status code and re-throw the error */
-        response.status(error.code);
-        throw error;
-    }
+    response.send(updatedUser);
 })
 
 export {registerUser, loginUser, getUserProfile, updateUserProfile};
