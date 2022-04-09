@@ -26,7 +26,7 @@ const searchPost = asyncHandler( async (request, response) => {
     /* this service searches for posts with given search/filtering parameters */
 
     /* get the search query string from the request */
-    let queryString = request.query.query;
+    let queryString = request.query.query || '';
     /* get the page from the URL */
     let page = request.query.page;
 
