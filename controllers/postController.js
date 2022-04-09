@@ -4,6 +4,7 @@ import Post from "../models/postModel.js"
 import User from '../models/userModel.js';
 /* Services */
 import PostsService from '../services/postsService.js';
+import RecommendationService from '../services/recommendationService.js';
 /* Utilities */
 import { isEmpty } from '../utilities/emptiness.js';
 
@@ -47,7 +48,9 @@ const searchPost = asyncHandler( async (request, response) => {
     /* search for posts with the given query string and filters */
     let result = await PostsService.searchAndFilterPosts(queryString, filter, page);
 
-    // To-do: Recommend Logic
+    // Run The Recommendation Logic Right After Search 
+    if(request.user)
+        await RecommendationService.associateRecommendationsWithUser(queryString, request.user._id);
 
     response.send(result);
 })
@@ -126,7 +129,18 @@ const getRecommendedPosts = asyncHandler( async (request, response) => {
     // To-do: Learn whether there is a user or not
     // To-d: make recommendations based on that
 
-    response.send("main page posts");
+    /* Check if there is an authenticated user */
+    if( request.user ) {
+        const recommendedPosts = await RecommendationService.recommendedPostsForUser(request.user._id, 'MAIN_PAGE');
+
+        response.send(recommendedPosts);
+    }
+    /* If there is no authenticated user, fetch the newest posts */
+    else {
+
+        const newestPosts = await PostsService.getNewestPosts();
+        response.send(newestPosts);
+    }
 });
 
 
