@@ -22,12 +22,6 @@ class RecommendationService {
     // TO-DO: Implement this
   }
 
-  static async setFutureRecommendationsForUser(userID, postIDs){
-    /* this service gets an array of post ids and a user id and set future recommendations 
-       of a user (pre-computation) */
-
-    // TO-DO: Implement this
-  }
 }
 
 export default RecommendationService;
