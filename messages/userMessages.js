@@ -8,5 +8,7 @@ export default {
   USER_NOT_FOUND_FOR_THIS_ID: 'Kullanıcı bulunamadı.',
   USER_NOT_FOUND_FOR_THIS_EMAIL: 'Kullanıcı bulunamadı.',
   USER_NOT_CREATED: 'Kullanıcı oluşturulamadı.',
-  PASSWORD_INCORRECT: 'Şifre yanlış.'
+  PASSWORD_INCORRECT: 'Şifre yanlış.',
+  TOKEN_INVALID: 'Geçersiz token.',
+  TOKEN_MISSING: 'Token eksik.',
 };

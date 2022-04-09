@@ -1,9 +1,10 @@
 import asyncHandler from 'express-async-handler'
 import jwt from 'jsonwebtoken';
-
+import { StatusCodes } from 'http-status-codes';
 /* Models */
 import User from '../models/userModel.js'
-
+/* Messages */
+import msg from '../messages/userMessages.js'
 
 const authenticate =  asyncHandler( async (request, response, next) => {
     /* 
@@ -27,15 +28,18 @@ const authenticate =  asyncHandler( async (request, response, next) => {
 
       } catch (error) {
         /* Token is modified, i.e. not verified. */
-        response.status(401);
-        throw new Error("not authorized, token not verified");
+          error.message = msg.TOKEN_INVALID;
+          error.code = StatusCodes.UNAUTHORIZED;
+        throw error;
       }
 
     }
     else{
       /* when the user does not provide a token or does not send a JWT (Bearer) token */
-      response.status(401);
-      throw new Error("not authorized, token missing");
+      const error = new Error();
+        error.message = msg.TOKEN_MISSING;
+        error.code = StatusCodes.UNAUTHORIZED;
+      throw error;
     }
 })
 
