@@ -29,6 +29,22 @@ const searchPost = asyncHandler( async (request, response) => {
     let queryString = request.query.query;
     /* get the page from the URL */
     let page = request.query.page;
+
+    let filter = createFiltersHelper(request);
+
+    /* search for posts with the given query string and filters */
+    let result = await PostsService.searchAndFilterPosts(queryString, filter, page);
+
+    // Run The Recommendation Logic Right After Search 
+    if(request.user)
+        await RecommendationService.associateRecommendationsWithUser(queryString, request.user._id);
+
+    response.send(result);
+})
+
+function createFiltersHelper(request) {
+    /* this helper function creates a filter object from the parameters sent in request */
+
     /* get the filters from the URL */
     let relatedInstitution = request.query.relatedInstitution;
     let relatedCity = request.query.relatedCity;
@@ -43,17 +59,9 @@ const searchPost = asyncHandler( async (request, response) => {
     if(relatedCity) filter.relatedCity = relatedCity;
     if(type) filter.type = type;
     if(condition) filter.condition = condition;
-    // if any of the filters do not exist, do not include it in the filter object
 
-    /* search for posts with the given query string and filters */
-    let result = await PostsService.searchAndFilterPosts(queryString, filter, page);
-
-    // Run The Recommendation Logic Right After Search 
-    if(request.user)
-        await RecommendationService.associateRecommendationsWithUser(queryString, request.user._id);
-
-    response.send(result);
-})
+    return filter;
+}
 
 // @desc    add new image to an existing post
 // @route   POST /posts/:id/images
@@ -139,9 +147,9 @@ const getRecommendedPosts = asyncHandler( async (request, response) => {
 const markPostAsSold = asyncHandler( async (request, response) => {
     /* this service marks the post with the given post id as sold */
 
-       let soldPost = await PostsService.markPostAsSold(request.params.id)
+    let soldPost = await PostsService.markPostAsSold(request.params.id)
 
-       response.send(soldPost);
+    response.send(soldPost);
 });
 
 export {createPost, searchPost, addImagetoPost, updatePost, deletePost, getPost, starPost, getRecommendedPosts, markPostAsSold};
