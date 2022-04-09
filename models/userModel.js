@@ -1,4 +1,5 @@
 import mongoose from 'mongoose'
+import bcrypt from 'bcryptjs'
 
 const userSchema = mongoose.Schema(
     {
@@ -13,6 +14,14 @@ const userSchema = mongoose.Schema(
         "isActive": { type: Boolean, default: true },
         "isEmailVerified": { type: Boolean, default: false }
     },{ timestamps : true});
+
+
+userSchema.methods.matchPassword = async function(enteredPassword){
+    /* this method will compare the entered password with the password of the user
+       of course the hashed version */
+    return await bcrypt.compare(enteredPassword, this.password);
+}
+
 
 /* create User model from this schema */
 
