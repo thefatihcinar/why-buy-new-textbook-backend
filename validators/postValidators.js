@@ -15,7 +15,7 @@ const createPostValidator = [
 
   /* validate for field: price */
   body('price').notEmpty().withMessage(msg.PRICE_IS_REQUIRED),
-  body('price').isFloat({ gt: 0.0, pric }).withMessage(msg.PRICE_MUST_BE_NUMBER),
+  body('price').isFloat({ gt: 0.0 }).withMessage(msg.PRICE_MUST_BE_NUMBER),
 
   /* validate for field: author */
   body('author').isLength({ min: 1, max: 200}).withMessage(msg.AUTHOR_LENGTH_MINIMUM_MAXIMUM_CHARACTERS),
@@ -54,7 +54,7 @@ const editPostValidator = [
 
  /* validate for field: price */
  body('price').notEmpty().withMessage(msg.PRICE_IS_REQUIRED),
- body('price').isFloat({ gt: 0.0, pric }).withMessage(msg.PRICE_MUST_BE_NUMBER),
+ body('price').isFloat({ gt: 0.0 }).withMessage(msg.PRICE_MUST_BE_NUMBER),
 
  /* validate for field: author */
  body('author').isLength({ min: 1, max: 200}).withMessage(msg.AUTHOR_LENGTH_MINIMUM_MAXIMUM_CHARACTERS),
