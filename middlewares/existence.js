@@ -17,8 +17,10 @@ const postExistence = asyncHandler(async (request, response, next) => {
 
   /* if there is no such a post, return NOT_FOUND */
   if (!post) {
-    response.status(StatusCodes.NOT_FOUND);
-    throw new Error(postMessages.POST_NOT_FOUND);
+    const error = new Error();
+      error.message = postMessages.POST_NOT_FOUND;
+      error.code = StatusCodes.NOT_FOUND;
+    throw error;
   }
 
   next();
@@ -33,8 +35,10 @@ const userExistence = asyncHandler(async (request, response, next) => {
 
   /* if there is no such a USER, return NOT_FOUND */
   if (!user) {
-    response.status(StatusCodes.NOT_FOUND);
-    throw new Error(userMessages.USER_NOT_FOUND);
+    const error = new Error();
+      error.message = userMessages.USER_NOT_FOUND;
+      error.code = StatusCodes.NOT_FOUND;
+    throw error;
   }
 
   next();
