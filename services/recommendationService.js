@@ -14,13 +14,6 @@ import faker from 'faker';
 
 class RecommendationService {
   
-  
-
-  static async recommendedPostsBasedOnInstituion(institutionID){
-    /* this service brings the recommended posts for a user with the given institution id */
-
-    // TO-DO: Implement this
-  }
 
 }
 
