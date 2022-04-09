@@ -4,6 +4,7 @@ import Post from "../models/postModel.js";
 import User from '../models/userModel.js'
 /* Utilities */
 import { isEmpty } from '../utilities/emptiness.js'
+import ConfigurationInjector from '../utilities/configurationInjection.js'
 /* Helpers */
 import UsersServiceHelper from './usersService.js'
 /* Messages */
@@ -57,17 +58,55 @@ class PostsService {
     /* this service searches for posts with the given query string, no pagination and no filtering is done
        pure search */
 
-    /* the search operation is done both in the title and in the description of the post */
+    /* the search operation is done both in the title, author and in the description of the post */
 
     if(!queryString) queryString = ""; // if no query string is provided, set it to an empty string
 
     const result = await Post.find( { $or: 
                                         [ 
                                           { title: { $regex: queryString, $options: 'i' } }, 
+                                          { author: { $regex: queryString, $options: 'i' } },
                                           { description: { $regex: queryString, $options: 'i' } }
                                         ] 
                                     });
     return result;
+  }
+
+  static async searchAndFilterPosts(queryString, filters, page = 1){
+    /* this service searches for posts with given search/filtering parameters as well as pagination */
+
+    /* this search service searches for posts in both post titles, description and author */
+
+    /* Get the pagination configuration from global configuration system */
+    const cfg = new ConfigurationInjector();
+    const pageLimit = cfg.getConfig('PAGE_SIZE');
+
+    /* FILTERING */
+    /*
+        Here are some filters
+        1. CityID
+        2. Type
+        3. Condition
+        4. InstitutionID
+    */  
+    
+    if(!filters) filters = {};
+
+    const result = await Post.find( { 
+                                      $or: 
+                                        [ 
+                                          { title: { $regex: queryString, $options: 'i' } }, 
+                                          { author: { $regex: queryString, $options: 'i' } },
+                                          { description: { $regex: queryString, $options: 'i' } }
+                                        ],
+                                      $and: [
+                                        filters      
+                                      ] 
+                                    })
+                                    .skip( (page - 1) * pageLimit)
+                                    .limit(pageLimit);
+    return result;
+
   }
   
 
