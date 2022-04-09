@@ -6,7 +6,7 @@ import { response } from "express";
 const errorHandler = (error, request, response, next) => {
   /* the custom error handler middleware, responsible for when there is an error */
   /* decide the status code */
-  let statusCode = response.statusCode === 200  ? 500 : response.statusCode; 
+  let statusCode = response.statusCode === 200  ? 500 : ( error.code || response.statusCode ) ; 
   /* make 20x status code to be 500, because this is an error handler middleware
      there must be an error */
   response.status(statusCode);
