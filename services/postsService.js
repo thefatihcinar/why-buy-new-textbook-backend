@@ -44,7 +44,10 @@ class PostsService {
     let createdPost = await Post.create(post); 
 
     if( !createdPost ){
-      throw new Error(msg.POST_NOT_CREATED);
+      const error = new Error();
+        error.message = msg.POST_NOT_CREATED;
+        error.code = StatusCodes.INTERNAL_SERVER_ERROR;
+      throw error;
     }
     
     /* Associate this post with the user who publishes it */
@@ -160,7 +163,10 @@ class PostsService {
       return deletedPost;
     }
     else{
-      throw new Error("delete configuration must be provided");
+      const error = new Error();
+        error.message = msg.POST_DELETE_CONFIGS_MUST_BE_PROVIDED;
+        error.code = StatusCodes.BAD_REQUEST;
+      throw error;
     }
     
   }
