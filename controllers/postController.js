@@ -104,9 +104,6 @@ const getPost = asyncHandler( async (request, response) => {
 // @route   PUT /posts/:id/favorite
 // @access  private 
 const favoritePost = asyncHandler( async (request, response) => {
-    // To-Do: Get the post id from route
-    // To-Do: Learn who connects from token/session
-    // To-Do: Update post as favorite or unfavorite for the user
     
     let starredPost = await PostsService.starPost(request.params.id, request.user.id);
 
@@ -120,9 +117,6 @@ const getRecommendedPosts = asyncHandler( async (request, response) => {
     /* this controller will get the recommended posts for the desiring user, in order to
        be displayed in main page
        even if there is not an authenticated user, still recommends posts based on a logic developed */
-
-    // To-do: Learn whether there is a user or not
-    // To-d: make recommendations based on that
 
     /* Check if there is an authenticated user */
     if( request.user ) {
