@@ -6,7 +6,7 @@ import User from '../models/userModel.js'
 import { isEmpty } from '../utilities/emptiness.js'
 import ConfigurationInjector from '../utilities/configurationInjection.js'
 /* Helpers */
-import UsersServiceHelper from './usersService.js'
+import { UsersServiceHelper } from './usersService.js'
 /* Messages */
 import msg from '../messages/postMessages.js'
 
@@ -48,7 +48,7 @@ class PostsService {
     }
     
     /* Associate this post with the user who publishes it */
-    await User.updateOne({_id: user._id}, { $push: { publishedPosts: createdPost._id } } );  
+    await User.updateOne({_id: user._id}, { $addToSet: { publishedPosts: createdPost._id } } );  
 
     return createdPost;
 
@@ -205,7 +205,7 @@ class PostsService {
       /* this means that this user has not starred this post yet */
 
       /* star this post */
-      let updatedUser = await User.updateOne({_id: userID}, { $push: { starredPosts: postID } } , { new: true });
+      let updatedUser = await User.updateOne({_id: userID}, { $addToSet: { starredPosts: postID } } , { new: true });
       return updatedUser;
     }
   }
@@ -224,10 +224,22 @@ class PostsService {
 
   }
 
-  static async newestPosts(){
+  static async getNewestPosts(all = false){
     /* this service brings the newest posts published in the system */
+
+    if( all === true ) {
+      /* this means that we want to bring all the newest posts */
+      let newestPosts = await Post.find( { isDeleted: false } ).sort( { createdAt: -1 } ); /* sort by createdAt in descending order */
+      return newestPosts;
+    }
+
+    /* get the pagination configuration from global configuration system */
+    const cfg = new ConfigurationInjector();
+    const pageLimit = cfg.getConfig('PAGE_SIZE');
+
     
-    // TO-DO: Implement this
+    const newestPosts = await Post.find({ isDeleted: false }).sort( { createdAt: -1 } ).limit(pageLimit);
+    return newestPosts;
   }
 
   static async ressurrectPost(postID){
