@@ -17,6 +17,9 @@ dotenv.config();
 /* connect to the MongoDB first */
 connectDatabase();
 
+/* Configure Port */
+const PORT = 5005;
+
 export const app = express(); 
 
 /* Set Up a Body Parser */
@@ -34,4 +37,4 @@ app.use(notFound);
 /* Use Custom Error Handler Middleware */
 app.use(errorHandler);
 
-app.listen(5005);
+app.listen(process.env.PORT || PORT);
