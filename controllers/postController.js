@@ -96,7 +96,6 @@ const deletePost = asyncHandler( async (request, response) => {
 const getPost = asyncHandler( async (request, response) => {
 
     let post = await PostsService.getPostByID(request.params.id);
-
     
     response.send(post);
 })
