@@ -1,5 +1,7 @@
 import mongoose from 'mongoose'
 import bcrypt from 'bcryptjs'
+/* Utilities */
+import ConfigurationInjector from '../utilities/configurationInjection.js'
 
 const userSchema = mongoose.Schema(
     {
@@ -21,6 +23,23 @@ userSchema.methods.matchPassword = async function(enteredPassword){
        of course the hashed version */
     return await bcrypt.compare(enteredPassword, this.password);
 }
+
+userSchema.pre('save', async function(next){
+    /* this piece of mongoose middleware hashes the password just before creating the user */
+
+    if( !this.isModified('password') ){
+        // if the password is not modified do not do anything again
+        // definitely do not hash the password again, NEVER
+        next()
+    }
+
+    const cfg = new ConfigurationInjector();
+
+    const salt = await bcrypt.genSalt(cfg.getConfig('SALT_SIZE'));
+
+    this.password = await bcrypt.hash(this.password, salt);
+
+});
 
 
 /* create User model from this schema */
