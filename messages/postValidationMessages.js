@@ -1,10 +1,7 @@
 
 export default {
-  POST_NOT_CREATED: 'İlan oluşturulamadı.',
-  POST_NOT_FOUND: 'İlan bulunamadı.',
-  
   TITLE_IS_REQUIRED: 'Başlık girilmesi zorunludur.',
-  TITLE_LENGTH_MINIMUM_MAXIMUM_CHARACTERS: 'Başlık en az 10 en fazla 125 karakterden oluşmalıdır.',
+  TITLE_LENGTH_MINIMUM_MAXIMUM_CHARACTERS: 'Başlık en az 6 en fazla 125 karakterden oluşmalıdır.',
   TITLE_EMPTY: 'Başlık boş olamaz.',
 
   AUTHOR_IS_REQUIRED: 'Yazar girilmesi zorunludur.',
@@ -17,13 +14,13 @@ export default {
 
   INVALID_INSTITUTION_FORMAT: 'Geçerli bir kurum giriniz.',
 
-  TYPE_IS_REQUIRED: 'Tip girilmesi zorunludur.',
-  INVALID_TYPE_FORMAT: 'Geçerli bir tip giriniz.',
-  TYPE_EMPTY: 'Tip boş olamaz.',
+  TYPE_IS_REQUIRED: 'İlan türü girilmesi zorunludur.',
+  INVALID_TYPE_FORMAT: 'Geçerli bir ilan türü giriniz.',
+  TYPE_EMPTY: 'İlan türü boş olamaz.',
 
-  DESCRIPTION_IS_REQUIRED: 'Açıklama girilmesi zorunludur.',
-  DESCRIPTION_LENGTH_MINIMUM_MAXIMUM_CHARACTERS: 'Açıklama en az 10 en fazla 3000 karakterden oluşmalıdır.',
-  DESCRIPTION_EMPTY: 'Açıklama boş olamaz.',
+  DESCRIPTION_IS_REQUIRED: 'İlan açıklaması girilmesi zorunludur.',
+  DESCRIPTION_LENGTH_MINIMUM_MAXIMUM_CHARACTERS: 'İlan açıklaması en az 10 en fazla 20000 karakterden oluşmalıdır.',
+  DESCRIPTION_EMPTY: 'İlan açıklaması boş olamaz.',
 
   CONDITION_IS_REQUIRED: 'Durum girilmesi zorunludur.',
   INVALID_CONDITION_FORMAT: 'Geçerli bir şehir giriniz.',
@@ -32,9 +29,8 @@ export default {
   PRICE_IS_REQUIRED: 'Fiyat girilmesi zorunludur.',
   PRICE_LENGTH_MINIMUM_MAXIMUM_CHARACTERS: 'Fiyat en az 1 en fazla 10 karakterden oluşmalıdır.',
   INVALID_PRICE_FORMAT: 'Geçerli bir fiyat giriniz.', 
-  PRICE_MUST_BE_NUMBER: 'Fiyat sayı içermelidir.',
+  PRICE_MUST_BE_NUMBER: 'Fiyat sayı olmalıdır.',
   PRICE_EMPTY: 'Fiyat boş olamaz.',
-
 
   SHIPPABLE_TRUE_OR_FALSE: 'Kargolanabilir olup olmadığı belirtilmelidir.',
   FACETOFACESELLING_TRUE_OR_FALSE: 'Yüz yüze satılıp satılmayacağı belirtilmelidir.',
