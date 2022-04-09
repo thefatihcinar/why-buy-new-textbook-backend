@@ -24,9 +24,32 @@ const searchPost = asyncHandler( async (request, response) => {
 
     /* this service searches for posts with given search/filtering parameters */
 
-    // TO-DO: Implement service
+    /* get the search query string from the request */
+    let queryString = request.query.query;
+    /* get the page from the URL */
+    let page = request.query.page;
+    /* get the filters from the URL */
+    let relatedInstitution = request.query.relatedInstitution;
+    let relatedCity = request.query.relatedCity;
+    let type = request.query.type;
+    let condition = request.query.condition;
 
-    response.send("Searched posts")
+    /* Create filter object */
+    let filter = {};
+
+    /* add filters to the filter object */
+    if(relatedInstitution) filter.relatedInstitution = relatedInstitution;
+    if(relatedCity) filter.relatedCity = relatedCity;
+    if(type) filter.type = type;
+    if(condition) filter.condition = condition;
+    // if any of the filters do not exist, do not include it in the filter object
+
+    /* search for posts with the given query string and filters */
+    let result = await PostsService.searchAndFilterPosts(queryString, filter, page);
+
+    // To-do: Recommend Logic
+
+    response.send(result);
 })
 
 // @desc    add new image to an existing post
