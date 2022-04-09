@@ -100,10 +100,10 @@ const getPost = asyncHandler( async (request, response) => {
     response.send(post);
 })
 
-// @desc    favorite an existing post
-// @route   PUT /posts/:id/favorite
+// @desc    star an existing post
+// @route   PUT /posts/:id/star
 // @access  private 
-const favoritePost = asyncHandler( async (request, response) => {
+const starPost = asyncHandler( async (request, response) => {
     
     let starredPost = await PostsService.starPost(request.params.id, request.user.id);
 
@@ -144,4 +144,4 @@ const markPostAsSold = asyncHandler( async (request, response) => {
        response.send(soldPost);
 });
 
-export {createPost, searchPost, addImagetoPost, updatePost, deletePost, getPost, favoritePost, getRecommendedPosts, markPostAsSold};
+export {createPost, searchPost, addImagetoPost, updatePost, deletePost, getPost, starPost, getRecommendedPosts, markPostAsSold};
