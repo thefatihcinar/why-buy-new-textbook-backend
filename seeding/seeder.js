@@ -176,9 +176,18 @@ async function seedUsers(){
 
   const users = JSON.parse(rawUsers);
 
+  const result = [];
+
+  for(let user of users){
+    /* Create each user seperately */
+    let createdUser = await User.create(user);
+
+    result.push(createdUser);
+  }
+
   console.log('Users succesfully seeded'.green);
 
-  return await User.insertMany(users);
+  return result;
  
 }
 
