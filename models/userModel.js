@@ -24,6 +24,17 @@ userSchema.methods.matchPassword = async function(enteredPassword){
     return await bcrypt.compare(enteredPassword, this.password);
 }
 
+userSchema.methods.hashPassword = async function(password){
+    /* this method hashes a plain password */
+
+    const cfg = new ConfigurationInjector();
+
+    const salt = await bcrypt.genSalt(cfg.getConfig('SALT_SIZE'));
+
+    return await await bcrypt.hash(password, salt);
+}
+
+
 userSchema.pre('save', async function(next){
     /* this piece of mongoose middleware hashes the password just before creating the user */
 
@@ -33,11 +44,7 @@ userSchema.pre('save', async function(next){
         next()
     }
 
-    const cfg = new ConfigurationInjector();
-
-    const salt = await bcrypt.genSalt(cfg.getConfig('SALT_SIZE'));
-
-    this.password = await bcrypt.hash(this.password, salt);
+    this.password = await this.hashPassword(this.password);
 
 });
 
