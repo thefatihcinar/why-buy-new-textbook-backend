@@ -41,6 +41,20 @@ function softDeleteMiddleware(next) {
   next();
 }
 
+
+postSchema.pre('find', isSoldMiddleware);
+postSchema.pre('findOne', isSoldMiddleware);
+
+function isSoldMiddleware(next) {
+  // If `isSold` is not set on the query, set it to `false` so we only
+  // get docs that haven't been sold by default
+  var filter = this.getQuery();
+  if (filter.isSold == null) {
+    filter.isSold = false;
+  }
+  next();
+}
+
 /* delete the references when a post is deleted
    the references are in the following collections:
 */
