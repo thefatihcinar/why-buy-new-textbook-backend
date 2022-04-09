@@ -1,7 +1,9 @@
 import asyncHandler from 'express-async-handler';
-
+import { StatusCodes } from 'http-status-codes';
 /* Models */
 import User from '../models/userModel.js';
+/* Messages */
+import msg from '../messages/userMessages.js';
 
 /* Posts Authorization Middleware */
 const postsAuthorization = asyncHandler(async (request, response, next) => {
@@ -45,8 +47,10 @@ const usersAuthorization = asyncHandler(async (request, response, next) => {
   }
   else{
     /* this user wants to access other people's data */
-    response.status(403);
-    throw new Error("Forbidded");
+    const error = new Error();
+      error.message = msg.USER_NOT_AUTHORIZED;
+      error.code = StatusCodes.FORBIDDEN;
+    throw error;
   }
 
 })
