@@ -28,13 +28,22 @@ const postSchema = mongoose.Schema(
 
   },{ timestamps : true});
 
-/* Delete users' posts when user is removed */
-  postSchema.pre("remove", async function (next) {
-    const post = this;
 
-    await User.deleteMany({ publishedPosts: post._id });
-    await User.deleteMany({ starredPosts: post._id });
-    await User.deleteMany({ recommendedPosts: post._id });
+/* delete the references when a post is deleted
+   the references are in the following collections:
+*/
+postSchema.pre("remove", async function (next) {
+
+    const postID = this._id;
+
+    /* remove this post id form the published posts of the seller */
+    await User.updateOne({_id: deletedPost.seller}, { $pull: { publishedPosts: postID } } );
+
+    /* remove this post id from the starred posts of the seller */
+    await User.updateOne({_id: deletedPost.seller}, { $pull: { starredPosts: postID } } );
+
+    /* remove this post id from the recommended posts of the seller */
+    await User.updateOne({_id: deletedPost.seller}, { $pull: { recommendedPosts: postID } } );
 
     next();
 });
