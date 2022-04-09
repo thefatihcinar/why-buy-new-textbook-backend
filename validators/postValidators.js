@@ -67,7 +67,7 @@ const editPostValidator = [
 
   /* validate for field: type*/
   body('type').notEmpty().withMessage(msg.TYPE_IS_REQUIRED),
-  body('type').isIn(TypesService.getTypes).withMessage(msg.INVALID_TYPE_FORMAT),
+  body('type').isIn(TypesService.getTypes()).withMessage(msg.INVALID_TYPE_FORMAT),
 
   /* validate for field: description*/
   body('description').notEmpty().withMessage(msg.DESCRIPTION_IS_REQUIRED),
@@ -75,15 +75,15 @@ const editPostValidator = [
 
   /* validate for field: condition*/
   body('condition').notEmpty().withMessage(msg.CONDITION_IS_REQUIRED),
-  body('condition').isIn(ConditionsService.getConditions).withMessage(msg.INVALID_CONDITION_FORMAT),
+  body('condition').isIn(ConditionsService.getConditions()).withMessage(msg.INVALID_CONDITION_FORMAT),
 
 
   /* validate for field: city*/
   body('relatedCity').notEmpty().withMessage(msg.CITY_IS_REQUIRED),
-  body('relatedCity').isIn(CitiesService.getAllCityIDs).withMessage(msg.INVALID_CITY_FORMAT),
+  body('relatedCity').isIn(CitiesService.getAllCityIDs()).withMessage(msg.INVALID_CITY_FORMAT),
   
   /* validate for field: institution*/
-  body('relatedInstitution').isIn(InstitutionsService.getInstitutions).withMessage(msg.INVALID_INSTITUTION_FORMAT),
+  body('relatedInstitution').isIn(InstitutionsService.getInstitutions()).withMessage(msg.INVALID_INSTITUTION_FORMAT),
 
   /* validate for field: isShippable*/
   body('isShippable').isBoolean().withMessage(msg.SHIPPABLE_TRUE_OR_FALSE),
