@@ -56,7 +56,19 @@ const getRegisterForm = asyncHandler( async (request, response) => {
   response.send(formElements);
 })
 
+const getSearchPageElements = asyncHandler( async (request, response) => {
+  /* this controller serves the elements for searching a post
+     for examples cities, institutions, types and conditions */
+  
+  let searchPageElements = {
+      cities: await CitiesService.getCities(),
+      institutions: await InstitutionsService.getInstitutions(),
+      conditions: ConditionsService.getConditions(),
+      types: TypesService.getTypes()
+  }
+  
+  response.send(searchPageElements);
+});
 
 
-
-export { getCreatePostForm, getRegisterForm, getUpdatePostForm };
+export { getCreatePostForm, getRegisterForm, getUpdatePostForm, getSearchPageElements };
