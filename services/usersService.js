@@ -80,7 +80,7 @@ class UsersService {
           name: newUser.name,
           email: newUser.email,
           phoneNumber: newUser.phoneNumber,
-          token: Token.generateBearerToken(newUser._id)
+          token: Token.generateBearerToken(newUser)
       }; 
 
       return registeredUser;
@@ -109,7 +109,7 @@ class UsersService {
             name: user.name,
             email: user.email,
             phoneNumber: user.phoneNumber,
-            token: Token.generateBearerToken(user._id)
+            token: Token.generateBearerToken(user)
         }
         return loggedInUser;
     }
