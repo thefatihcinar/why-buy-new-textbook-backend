@@ -120,6 +120,54 @@ describe("User Registration", () => {
 
   });
 
+  describe("when the user provides isActive information where he/she should not", () => {
+        
+      test("should respond with HTTP 400 BAD_REQUEST", () => {});
+
+      test("should not change the isActive data of the user", () => {});
+  });
+
+  describe("when the user provides isEmailVerified information where he/she should not", () => {
+        
+    test("should respond with HTTP 400 BAD_REQUEST", () => {});
+
+    test("should not change the isMailVerified data of the user", () => {});
+
+  });
+
+  describe("when the user provides publishedPosts information where he/she should not", () => {
+        
+    test("should respond with HTTP 400 BAD_REQUEST", () => {});
+
+    test("should not change the publishedPosts of the user", () => {});
+
+  });
+
+  describe("when the user provides starredPosts information where he/she should not", () => {
+        
+    test("should respond with HTTP 400 BAD_REQUEST", () => {});
+
+    test("should not change the starredPosts of the user", () => {});
+
+  });
+
+  describe("when the user provides recommendedPosts information where he/she should not", () => {
+        
+    test("should respond with HTTP 400 BAD_REQUEST", () => {});
+
+    test("should not change the recommendedPosts of the user", () => {});
+  });
+
+  describe("when the user wants to assign new profile picture directly as URL", () => {
+        
+    test("should respond with HTTP 400 BAD_REQUEST", () => {});
+
+    test("should not change the URL of the user's profile picture", () => {});
+    
+  });
+
   describe("when the request has garbage keys, regardless of email and password", () => {});
 
 });
+
+describe("User Update Profile", () => {});
