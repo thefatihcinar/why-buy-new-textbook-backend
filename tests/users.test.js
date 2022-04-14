@@ -36,6 +36,7 @@ describe("User Login", () => {
   describe("when a valid and existing email adress is provided but password is wrong", () => {
 
       test("should respond with a 400 BAD_REQUEST status code", () => {});
+
   });
 
   describe("email", () => {
@@ -67,6 +68,10 @@ describe("User Registration", () => {
     test("should create the user correctly with given parameters", () => {});
 
     test("should respond with HTTP 201 Created ", () => {});
+
+    test("should respond with a valid JWT token", () => {});
+
+    test("should response a JWT Token which has all the appropiate information", () => {});
 
   });
 
