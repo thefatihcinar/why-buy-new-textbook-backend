@@ -2,69 +2,124 @@ import request from 'supertest'
 
 import { app } from '../server.js'
 
+/* Utilities */
+import valideObjectKeys from './helpers/valideObjectKeys.js'
+
 import * as fs from 'fs';
-import mongoose from 'mongoose'
+import jwtDecode from 'jwt-decode';
+
 import colors from 'colors'
 import dotenv from 'dotenv'
+dotenv.config();
+
     /* Connectors */
+import mongoose from 'mongoose'
 import connectDatabase from '../configurations/database.js'
 
     /* Models */
 import Post from '../models/postModel.js'
 
-// connectDatabase();
 
-describe("RegisterinG a New User", () => {
+describe("User Login", () => {
 
-  beforeEach(async () => {
-      const posts = await Post.find({});
-      console.log(posts.length);
+  describe("when valid credentials for login is provided", () => {
+
+    test("should respond with appropiate values", () => {});
+
+    test("should respond with a valid JWT token", () => {});
+
+    test("should respond with a token that has valid issue and expiration dates", () => {});
+
+    test("should response a JWT Token which has all the appropiate information", () => {});
   });
+
+  describe("when a valid and existing email adress is provided but password is wrong", () => {
+
+      test("should respond with a 400 BAD_REQUEST status code", () => {});
+  });
+
+  describe("email", () => {
+
+    describe("when a non-email is provided for email", () => {
+
+      test("should respond with a 400 BAD_REQUEST status code", () => {});
+    });
+
+    describe("when a non-existing email address is provided", () => {
+        
+      test("should respond with a 400 BAD_REQUEST status code", () => {});
+    });
   
-  describe("when unnecessary keys are provided, other than password, name, email and phoneNumber", () => {
-      
-      test("should respond the very post successfully", async () => {
-          const response  = await request(app).get("/posts/623a40b6a3e499258cd28341").send();
-          console.log("response", response);
-          expect( response._body.price ).toBe(150)
-      })
+  });
 
-      
-  })
+  describe("when the request has garbage keys, regardless of email and password", () => {
 
-  describe("when the name of the user is missing or not provided", () => {
-      
-    test("should respond not found 404", async () => {
-        const response  = await request(app).get("/posts/613a40b6a3e499258cd28341").send();
-        console.log("response", response);
-        expect( response.statusCode ).toBe(404)
-    })
-  
-  })
-
-  describe("when the name of the user is missing or not provided", () => {
-      
-    test("should respond not found 404", async () => {
-        const response  = await request(app).get("/posts/613a40b6a3e499258cd28341").send();
-        console.log("response", response);
-        expect( response.statusCode ).toBe(404)
-    })
-  
-  })
-
-  describe("password", () => {
-      
-    describe("when password is less than 5 chars", () => {
-      
-      test("should respond not found 404", async () => {
-          const response  = await request(app).get("/posts/613a40b6a3e499258cd28341").send();
-          console.log("response", response);
-          expect( response.statusCode ).toBe(404)
-      })
-    
-    })
-  
-  })
-
+      test("should respond with a 400 BAD_REQUEST status code", () => {});
+  });
 
 })
+
+
+describe("User Registration", () => {
+
+  describe("when valid credentials for registeration is provided", () => {
+
+    test("should create the user correctly with given parameters", () => {});
+
+    test("should respond with HTTP 201 Created ", () => {});
+
+  });
+
+  describe("when the email of the user is already registered", () => {
+      
+      test("should respond with HTTP 409 Conflict", () => {});
+  });
+
+  describe("email", () => {
+
+    describe("when the email of the user is missing or not provided", () => {
+
+      test("should respond with HTTP 400 BAD_REQUEST", () => {});
+    });
+
+    describe("when a non-email is provided for email", () => {
+        
+        test("should respond with HTTP 400 BAD_REQUEST", () => {});
+    });
+  
+  });
+
+  describe("password", () => {
+
+    describe("when the password of the user is missing or not provided", () => {});
+
+    describe("when the password of the user does not obey the regular expression", () => {});
+
+    describe("when the password of the user is less than 8 chars", () => {});
+
+    describe("when the password of the user is more than 50 chars", () => {});
+
+
+  
+  });
+
+  describe("phone number", () => {
+
+    describe("when the phoneNumber of the user is missing or not provided", () => {});
+
+    describe("when an invalid phone number is provided", () => {});
+  
+  });
+
+  describe("name of the user", () => {
+
+    describe("when the name of the user is missing or not provided", () => {});
+    
+    describe("when the name of the user is provided as a number", () => {});
+
+
+  });
+
+  describe("when the request has garbage keys, regardless of email and password", () => {});
+
+});
