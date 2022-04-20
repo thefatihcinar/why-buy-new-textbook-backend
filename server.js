@@ -1,6 +1,7 @@
 import dotenv from 'dotenv'
 import express from 'express'
 import colors from 'colors'
+import cors from 'cors'
 /* Utilities */
 import connectDatabase from './configurations/database.js'
 /* Routes */
@@ -21,6 +22,9 @@ connectDatabase();
 const PORT = 5005;
 
 export const app = express(); 
+
+/* Enable CORS to all domains */
+app.use(cors({ origin: '*' }));
 
 /* Set Up a Body Parser */
 app.use(express.json()); 
