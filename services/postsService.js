@@ -198,6 +198,8 @@ class PostsService {
     await PostsServiceHelper.assertPostExists(postID);
     await UsersServiceHelper.assertUserExists(userID);
 
+    const user = await User.findById(userID);
+
     /* check whether this post is already starred by this user */
     let isAlreadyStarred = await user.starredPosts.includes(postID);
     if(isAlreadyStarred){
