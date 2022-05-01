@@ -131,7 +131,7 @@ const getRecommendedPosts = asyncHandler( async (request, response) => {
         
         /* get where this controller is called from */
         /* is it called from the main page or is it called from a banner ? */
-        const calledFrom = request.params.place;
+        let calledFrom = request.params.place;
         if( request.params.place === "BANNER" || request.params.place === "banner"  ) calledFrom = "BANNER";
         else calledFrom = "MAIN_PAGE";
 
