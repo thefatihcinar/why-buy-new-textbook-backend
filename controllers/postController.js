@@ -128,7 +128,14 @@ const getRecommendedPosts = asyncHandler( async (request, response) => {
 
     /* Check if there is an authenticated user */
     if( request.user ) {
-        const recommendedPosts = await RecommendationService.recommendedPostsForUser(request.user._id, 'MAIN_PAGE');
+        
+        /* get where this controller is called from */
+        /* is it called from the main page or is it called from a banner ? */
+        const calledFrom = request.params.place;
+        if( request.params.place === "BANNER" || request.params.place === "banner"  ) calledFrom = "BANNER";
+        else calledFrom = "MAIN_PAGE";
+
+        const recommendedPosts = await RecommendationService.recommendedPostsForUser(request.user._id, calledFrom);
 
         response.send(recommendedPosts);
     }
