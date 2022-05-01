@@ -118,7 +118,7 @@ class PostsService {
 
     await PostsServiceHelper.assertPostExists(postID);
 
-    let post = await Post.findById(postID);
+    let post = await Post.findById(postID).populate("seller").populate("relatedCity").populate("relatedInstitution");
 
     return post;
   }
